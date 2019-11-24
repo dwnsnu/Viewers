@@ -94,7 +94,7 @@ class Header extends Component {
 
             {children}
 
-            {showStudyList && !home && (
+            {/*showStudyList && !home && (
               <Link
                 className="header-btn header-studyListLinkSection"
                 to={{
@@ -104,7 +104,7 @@ class Header extends Component {
               >
                 {t('Study list')}
               </Link>
-            )}
+            )*/}
           </div>
 
           <div className="header-menu">

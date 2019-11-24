@@ -3,18 +3,18 @@ window.config = {
   routerBasename: '/',
   extensions: [],
   showStudyList: true,
-  filterQueryParam: false,
   servers: {
     dicomWeb: [
       {
-        name: 'DCM4CHEE',
-        wadoUriRoot: 'https://server.dcmjs.org/dcm4chee-arc/aets/DCM4CHEE/wado',
-        qidoRoot: 'https://server.dcmjs.org/dcm4chee-arc/aets/DCM4CHEE/rs',
-        wadoRoot: 'https://server.dcmjs.org/dcm4chee-arc/aets/DCM4CHEE/rs',
-        qidoSupportsIncludeField: true,
-        imageRendering: 'wadors',
+        name: 'dicomWeb_server',
+        wadoUriRoot: 'http://localhost:5985',
+        qidoRoot: 'http://localhost:5985',
+        wadoRoot: 'http://localhost:5985',
+        imageRendering: 'wadouri',
         thumbnailRendering: 'wadors',
-        enableStudyLazyLoad: true,
+          'requestOptions' : {
+            'requestFromBrowser': true
+          }
       },
     ],
   },
