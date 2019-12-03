@@ -81,39 +81,39 @@ class Header extends Component {
     return (
       <>
         <div className="notification-bar">{t('INVESTIGATIONAL USE ONLY')}</div>
-        <div className={`entry-header ${home ? 'header-big' : ''}`}>
-          <div className="header-left-box">
-            {location && location.studyLink && (
-              <Link
-                to={location.studyLink}
-                className="header-btn header-viewerLink"
-              >
-                {t('Back to Viewer')}
-              </Link>
-            )}
-
-            {children}
-
-            {/*showStudyList && !home && (
-              <Link
-                className="header-btn header-studyListLinkSection"
-                to={{
-                  pathname: '/',
-                  state: { studyLink: location.pathname },
-                }}
-              >
-                {t('Study list')}
-              </Link>
-            )*/}
-          </div>
-
-          <div className="header-menu">
-            <span className="research-use">
-              {t('INVESTIGATIONAL USE ONLY')}
-            </span>
-            <Dropdown title={t('Options')} list={this.options} align="right" />
-          </div>
-        </div>
+        {/*<div className={`entry-header ${home ? 'header-big' : ''}`} style={{border:'green solid'}}>*/}
+          {/*<div className="header-left-box">*/}
+            {/*{location && location.studyLink && (*/}
+              {/*<Link*/}
+                {/*to={location.studyLink}*/}
+                {/*className="header-btn header-viewerLink"*/}
+              {/*>*/}
+                {/*{t('Back to Viewer')}*/}
+              {/*</Link>*/}
+            {/*)}*/}
+        
+            {/*{children}*/}
+        
+            {/*/!*showStudyList && !home && (*/}
+              {/*<Link*/}
+                {/*className="header-btn header-studyListLinkSection"*/}
+                {/*to={{*/}
+                  {/*pathname: '/',*/}
+                  {/*state: { studyLink: location.pathname },*/}
+                {/*}}*/}
+              {/*>*/}
+                {/*{t('Study list')}*/}
+              {/*</Link>*/}
+            {/*)*!/*/}
+          {/*</div>*/}
+        
+          {/*<div className="header-menu">*/}
+            {/*<span className="research-use">*/}
+              {/*{t('INVESTIGATIONAL USE ONLY')}*/}
+            {/*</span>*/}
+            {/*<Dropdown title={t('Options')} list={this.options} align="right" />*/}
+          {/*</div>*/}
+        {/*</div>*/}
       </>
     );
   }

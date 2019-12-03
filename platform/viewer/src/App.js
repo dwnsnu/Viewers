@@ -158,7 +158,9 @@ class App extends Component {
                 <SnackbarProvider service={UINotificationService}>
                   <DialogProvider service={UIDialogService}>
                     <ModalProvider modal={OHIFModal} service={UIModalService}>
+                      {/*<div style={{border:'red solid'}}>*/}
                       <OHIFStandaloneViewer />
+                      {/*</div>*/}
                     </ModalProvider>
                   </DialogProvider>
                 </SnackbarProvider>
