@@ -122,10 +122,16 @@ class ToolbarCol extends Component {
               onValueChanged={onPressLeft}
             />
           </div>
-          {/*{buttonComponents}*/}
           <div className="ToolbarColdiv">
             <ConnectedLayoutButton />
           </div>
+          <div className="ToolbarColdiv">
+            <ConnectedLayoutButton />
+          </div>
+          <div className="ToolbarColdiv">
+            <ConnectedLayoutButton />
+          </div>
+          {/*{buttonComponents}*/}
         </div>
       </>
     );
