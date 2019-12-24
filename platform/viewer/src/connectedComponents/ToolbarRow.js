@@ -115,7 +115,7 @@ class ToolbarRow extends Component {
     return (
       <>
         <div className="ToolbarRow">
-          <div className="pull-left m-t-1 p-y-1" style={{ padding: '10px' }}>
+          <div className="pull-left m-t-1 p-y-1" style={{ padding: '10px', border:'blue solid' }}>
             <RoundedButtonGroup
               options={this.buttonGroups.left}
               value={this.props.selectedLeftSidePanel || ''}
@@ -125,18 +125,20 @@ class ToolbarRow extends Component {
           {buttonComponents}
           <ConnectedLayoutButton />
           <ConnectedPluginSwitch studies={this.props.studies} />
-          <div
-            className="pull-right m-t-1 rm-x-1"
-            style={{ marginLeft: 'auto' }}
-          >
-            {this.buttonGroups.right.length && (
-              <RoundedButtonGroup
-                options={this.buttonGroups.right}
-                value={this.props.selectedRightSidePanel || ''}
-                onValueChanged={onPressRight}
-              />
-            )}
-          </div>
+          
+          
+          {/*<div*/}
+            {/*className="pull-right m-t-1 rm-x-1"*/}
+            {/*style={{ marginLeft: 'auto', border:'blue solid'}}*/}
+          {/*>*/}
+            {/*{this.buttonGroups.right.length && (*/}
+              {/*<RoundedButtonGroup*/}
+                {/*options={this.buttonGroups.right}*/}
+                {/*value={this.props.selectedRightSidePanel || ''}*/}
+                {/*onValueChanged={onPressRight}*/}
+              {/*/>*/}
+            {/*)}*/}
+          {/*</div>*/}
         </div>
       </>
     );

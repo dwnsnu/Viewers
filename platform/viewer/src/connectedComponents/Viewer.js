@@ -88,7 +88,7 @@ class Viewer extends Component {
 
   state = {
     isLeftSidePanelOpen: true,
-    isRightSidePanelOpen: false,
+    isRightSidePanelOpen: true,
     selectedRightSidePanel: '',
     selectedLeftSidePanel: 'studies', // TODO: Don't hardcode this
     thumbnails: [],
@@ -245,48 +245,50 @@ class Viewer extends Component {
         </WhiteLabellingContext.Consumer>
 
         {/* TOOLBAR */}
-        <ConnectedToolbarRow
-          isLeftSidePanelOpen={this.state.isLeftSidePanelOpen}
-          isRightSidePanelOpen={this.state.isRightSidePanelOpen}
-          selectedLeftSidePanel={
-            this.state.isLeftSidePanelOpen
-              ? this.state.selectedLeftSidePanel
-              : ''
-          }
-          selectedRightSidePanel={
-            this.state.isRightSidePanelOpen
-              ? this.state.selectedRightSidePanel
-              : ''
-          }
-          handleSidePanelChange={(side, selectedPanel) => {
-            const sideClicked = side && side[0].toUpperCase() + side.slice(1);
-            const openKey = `is${sideClicked}SidePanelOpen`;
-            const selectedKey = `selected${sideClicked}SidePanel`;
-            const updatedState = Object.assign({}, this.state);
-
-            const isOpen = updatedState[openKey];
-            const prevSelectedPanel = updatedState[selectedKey];
-            // RoundedButtonGroup returns `null` if selected button is clicked
-            const isSameSelectedPanel =
-              prevSelectedPanel === selectedPanel || selectedPanel === null;
-
-            updatedState[selectedKey] = selectedPanel || prevSelectedPanel;
-
-            const isClosedOrShouldClose = !isOpen || isSameSelectedPanel;
-            if (isClosedOrShouldClose) {
-              updatedState[openKey] = !updatedState[openKey];
+        <div style={{border:'red solid'}}>
+          <ConnectedToolbarRow
+            isLeftSidePanelOpen={this.state.isLeftSidePanelOpen}
+            isRightSidePanelOpen={this.state.isRightSidePanelOpen}
+            selectedLeftSidePanel={
+              this.state.isLeftSidePanelOpen
+                ? this.state.selectedLeftSidePanel
+                : ''
             }
-
-            this.setState(updatedState);
-          }}
-          studies={this.props.studies}
-        />
+            selectedRightSidePanel={
+              this.state.isRightSidePanelOpen
+                ? this.state.selectedRightSidePanel
+                : ''
+            }
+            handleSidePanelChange={(side, selectedPanel) => {
+              const sideClicked = side && side[0].toUpperCase() + side.slice(1);
+              const openKey = `is${sideClicked}SidePanelOpen`;
+              const selectedKey = `selected${sideClicked}SidePanel`;
+              const updatedState = Object.assign({}, this.state);
+          
+              const isOpen = updatedState[openKey];
+              const prevSelectedPanel = updatedState[selectedKey];
+              // RoundedButtonGroup returns `null` if selected button is clicked
+              const isSameSelectedPanel =
+                prevSelectedPanel === selectedPanel || selectedPanel === null;
+          
+              updatedState[selectedKey] = selectedPanel || prevSelectedPanel;
+          
+              const isClosedOrShouldClose = !isOpen || isSameSelectedPanel;
+              if (isClosedOrShouldClose) {
+                updatedState[openKey] = !updatedState[openKey];
+              }
+          
+              this.setState(updatedState);
+            }}
+            studies={this.props.studies}
+          />
+        </div>
 
         {/*<ConnectedStudyLoadingMonitor studies={this.props.studies} />*/}
         {/*<StudyPrefetcher studies={this.props.studies} />*/}
 
         {/* VIEWPORTS + SIDEPANELS */}
-        <div className="FlexboxLayout">
+        <div className="FlexboxLayout" style={{border:'yellow solid'}}>
           {/* LEFT */}
           <SidePanel from="left" isOpen={this.state.isLeftSidePanelOpen}>
             {VisiblePanelLeft ? (
@@ -303,12 +305,12 @@ class Viewer extends Component {
           </SidePanel>
 
           {/* MAIN */}
-          <div className={classNames('main-content')}>
+          <div className={classNames('main-content')} style={{border:'blue solid'}}>
             <ConnectedViewerMain studies={this.props.studies} />
           </div>
 
           {/* RIGHT */}
-          <SidePanel from="right" isOpen={this.state.isRightSidePanelOpen}>
+          <SidePanel from="right" isOpen={this.state.isRightSidePanelOpen} style={{border:'green solid'}}>
             {VisiblePanelRight && (
               <VisiblePanelRight
                 viewports={this.props.viewports}

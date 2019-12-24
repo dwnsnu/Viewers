@@ -145,7 +145,7 @@ class ViewerMain extends Component {
       : [];
 
     return (
-      <div className="ViewerMain" >
+      <div className="ViewerMain">
         {this.state.displaySets.length && (
           <ConnectedViewportGrid
             studies={this.props.studies}

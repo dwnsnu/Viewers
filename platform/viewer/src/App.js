@@ -120,34 +120,34 @@ class App extends Component {
       appConfig: this._appConfig,
     };
 
-    if (userManager) {
-      return (
-        <AppContext.Provider value={config}>
-          <Provider store={store}>
-            <I18nextProvider i18n={i18n}>
-              <OidcProvider store={store} userManager={userManager}>
-                <UserManagerContext.Provider value={userManager}>
-                  <Router basename={routerBasename}>
-                    <WhiteLabellingContext.Provider value={whiteLabelling}>
-                      <SnackbarProvider service={UINotificationService}>
-                        <DialogProvider service={UIDialogService}>
-                          <ModalProvider
-                            modal={OHIFModal}
-                            service={UIModalService}
-                          >
-                            <OHIFStandaloneViewer userManager={userManager} />
-                          </ModalProvider>
-                        </DialogProvider>
-                      </SnackbarProvider>
-                    </WhiteLabellingContext.Provider>
-                  </Router>
-                </UserManagerContext.Provider>
-              </OidcProvider>
-            </I18nextProvider>
-          </Provider>
-        </AppContext.Provider>
-      );
-    }
+    // if (userManager) {
+    //   return (
+    //     <AppContext.Provider value={config}>
+    //       <Provider store={store}>
+    //         <I18nextProvider i18n={i18n}>
+    //           <OidcProvider store={store} userManager={userManager}>
+    //             <UserManagerContext.Provider value={userManager}>
+    //               <Router basename={routerBasename}>
+    //                 <WhiteLabellingContext.Provider value={whiteLabelling}>
+    //                   <SnackbarProvider service={UINotificationService}>
+    //                     <DialogProvider service={UIDialogService}>
+    //                       <ModalProvider
+    //                         modal={OHIFModal}
+    //                         service={UIModalService}
+    //                       >
+    //                         <OHIFStandaloneViewer userManager={userManager} />
+    //                       </ModalProvider>
+    //                     </DialogProvider>
+    //                   </SnackbarProvider>
+    //                 </WhiteLabellingContext.Provider>
+    //               </Router>
+    //             </UserManagerContext.Provider>
+    //           </OidcProvider>
+    //         </I18nextProvider>
+    //       </Provider>
+    //     </AppContext.Provider>
+    //   );
+    // }
 
     return (
       <AppContext.Provider value={config}>
