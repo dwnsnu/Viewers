@@ -1,0 +1,25 @@
+.ToolbarCol {
+    /*border-bottom: var(--ui-border-thickness) solid var(--ui-border-color);*/
+    border: white solid;
+    /*flex: 0 0 auto;*/
+    /*height: var(--toolbar-height);*/
+    padding-left: 1rem;
+    padding-right: 1rem;
+    position: relative;
+    /*transition: height 300ms ease;*/
+    width: 100%;
+    height: 100%;
+    display: block;
+    align-items: center;
+}
+.ToolbarColdiv {
+    display: flex;
+    padding: 10px;
+    border: red solid;
+    /*width:100%;*/
+}
+
+/*ToolbarCol.expanded {*/
+    /*height: calc(var(--toolbar-height) + var(--toolbar-drawer-height));*/
+/*}*/
+/*style={{ padding: '10px', border:'blue solid'}}*/

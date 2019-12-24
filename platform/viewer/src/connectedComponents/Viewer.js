@@ -7,6 +7,7 @@ import OHIF from '@ohif/core';
 import moment from 'moment';
 import ConnectedHeader from './ConnectedHeader.js';
 import ConnectedToolbarRow from './ConnectedToolbarRow.js';
+import ConnectedToolbarCol from './ConnectedToolbarCol.js';
 import ConnectedLabellingOverlay from './ConnectedLabellingOverlay';
 import ConnectedStudyBrowser from './ConnectedStudyBrowser.js';
 import ConnectedViewerMain from './ConnectedViewerMain.js';
@@ -289,20 +290,22 @@ class Viewer extends Component {
 
         {/* VIEWPORTS + SIDEPANELS */}
         <div className="FlexboxLayout" style={{border:'yellow solid'}}>
-          {/* LEFT */}
-          <SidePanel from="left" isOpen={this.state.isLeftSidePanelOpen}>
-            {VisiblePanelLeft ? (
-              <VisiblePanelLeft
-                viewports={this.props.viewports}
-                activeIndex={this.props.activeViewportIndex}
-              />
-            ) : (
-              <ConnectedStudyBrowser
-                studies={this.state.thumbnails}
-                studyMetadata={this.props.studies}
-              />
-            )}
-          </SidePanel>
+          {/*/!* LEFT *!/*/}
+          <div style={{border:'red solid'}}>
+            <SidePanel from="left" isOpen={this.state.isLeftSidePanelOpen}>
+              {VisiblePanelLeft ? (
+                <VisiblePanelLeft
+                  viewports={this.props.viewports}
+                  activeIndex={this.props.activeViewportIndex}
+                />
+              ) : (
+                <ConnectedStudyBrowser
+                  studies={this.state.thumbnails}
+                  studyMetadata={this.props.studies}
+                />
+              )}
+            </SidePanel>
+          </div>
 
           {/* MAIN */}
           <div className={classNames('main-content')} style={{border:'blue solid'}}>
@@ -310,14 +313,53 @@ class Viewer extends Component {
           </div>
 
           {/* RIGHT */}
-          <SidePanel from="right" isOpen={this.state.isRightSidePanelOpen} style={{border:'green solid'}}>
-            {VisiblePanelRight && (
-              <VisiblePanelRight
-                viewports={this.props.viewports}
-                activeIndex={this.props.activeViewportIndex}
-              />
-            )}
-          </SidePanel>
+          <div style={{border:'red solid'}}>
+            <SidePanel from="right" isOpen={this.state.isRightSidePanelOpen}>
+              {VisiblePanelRight ? (
+                <VisiblePanelRight
+                  viewports={this.props.viewports}
+                  activeIndex={this.props.activeViewportIndex}
+                />
+              ) : (
+                <ConnectedToolbarCol
+                  isLeftSidePanelOpen={this.state.isLeftSidePanelOpen}
+                  isRightSidePanelOpen={this.state.isRightSidePanelOpen}
+                  selectedLeftSidePanel={
+                    this.state.isLeftSidePanelOpen
+                      ? this.state.selectedLeftSidePanel
+                      : ''
+                  }
+                  selectedRightSidePanel={
+                    this.state.isRightSidePanelOpen
+                      ? this.state.selectedRightSidePanel
+                      : ''
+                  }
+                  handleSidePanelChange={(side, selectedPanel) => {
+                    const sideClicked = side && side[0].toUpperCase() + side.slice(1);
+                    const openKey = `is${sideClicked}SidePanelOpen`;
+                    const selectedKey = `selected${sideClicked}SidePanel`;
+                    const updatedState = Object.assign({}, this.state);
+        
+                    const isOpen = updatedState[openKey];
+                    const prevSelectedPanel = updatedState[selectedKey];
+                    // RoundedButtonGroup returns `null` if selected button is clicked
+                    const isSameSelectedPanel =
+                      prevSelectedPanel === selectedPanel || selectedPanel === null;
+        
+                    updatedState[selectedKey] = selectedPanel || prevSelectedPanel;
+        
+                    const isClosedOrShouldClose = !isOpen || isSameSelectedPanel;
+                    if (isClosedOrShouldClose) {
+                      updatedState[openKey] = !updatedState[openKey];
+                    }
+        
+                    this.setState(updatedState);
+                  }}
+                  studies={this.props.studies}
+                />
+              )}
+            </SidePanel>
+          </div>
         </div>
         <ConnectedLabellingOverlay />
       </>
