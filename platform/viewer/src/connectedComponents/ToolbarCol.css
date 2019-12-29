@@ -1,21 +1,29 @@
 .ToolbarCol {
     /*border-bottom: var(--ui-border-thickness) solid var(--ui-border-color);*/
-    border: white solid;
+    /*border: red solid;*/
     /*flex: 0 0 auto;*/
     /*height: var(--toolbar-height);*/
     padding-left: 1rem;
     padding-right: 1rem;
     position: relative;
     /*transition: height 300ms ease;*/
-    width: 120px;
+    /*width: 200px;*/
     height: 100%;
-    display: block;
+    display: flex;
+    flex-direction:column;
     align-items: center;
+    justify-self:center;
 }
 .ToolbarColdiv {
     display: flex;
-    padding: 10px;
-    border: red solid;
+    flex-direction:column;
+    align-items: center;
+    width: 100px;
+    height: 75px;
+    /*border: blue solid;*/
+    justify-content: center;
+    /*padding: 10px;*/
+    /*border: red solid;*/
     /*width:100%;*/
 }
 

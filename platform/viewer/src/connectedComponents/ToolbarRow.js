@@ -196,13 +196,15 @@ function _getExpandableButtonComponent(button, activeButtons) {
 
 function _getDefaultButtonComponent(button, activeButtons) {
   return (
-    <ToolbarButton
-      key={button.id}
-      label={button.label}
-      icon={button.icon}
-      onClick={_handleToolbarButtonClick.bind(this, button)}
-      isActive={activeButtons.map(button => button.id).includes(button.id)}
-    />
+    <div style={{border:'green solid', width:'150px', height:'80px'}}>
+      <ToolbarButton
+        key={button.id}
+        label={button.label}
+        icon={button.icon}
+        onClick={_handleToolbarButtonClick.bind(this, button)}
+        isActive={activeButtons.map(button => button.id).includes(button.id)}
+      />
+    </div>
   );
 }
 /**

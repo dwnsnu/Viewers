@@ -125,13 +125,7 @@ class ToolbarCol extends Component {
           <div className="ToolbarColdiv">
             <ConnectedLayoutButton />
           </div>
-          <div className="ToolbarColdiv">
-            <ConnectedLayoutButton />
-          </div>
-          <div className="ToolbarColdiv">
-            <ConnectedLayoutButton />
-          </div>
-          {/*{buttonComponents}*/}
+          {buttonComponents}
         </div>
       </>
     );
@@ -175,25 +169,29 @@ function _getExpandableButtonComponent(button, activeButtons) {
   });
 
   return (
-    <ExpandableToolMenu
-      key={button.id}
-      label={button.label}
-      icon={button.icon}
-      buttons={childButtons}
-      activeCommand={activeCommand}
-    />
+    <div className="ToolbarColdiv">
+      <ExpandableToolMenu
+        key={button.id}
+        label={button.label}
+        icon={button.icon}
+        buttons={childButtons}
+        activeCommand={activeCommand}
+      />
+    </div>
   );
 }
 
 function _getDefaultButtonComponent(button, activeButtons) {
   return (
-    <ToolbarButton
-      key={button.id}
-      label={button.label}
-      icon={button.icon}
-      onClick={_handleToolbarButtonClick.bind(this, button)}
-      isActive={activeButtons.map(button => button.id).includes(button.id)}
-    />
+    <div  className="ToolbarColdiv">
+      <ToolbarButton
+        key={button.id}
+        label={button.label}
+        icon={button.icon}
+        onClick={_handleToolbarButtonClick.bind(this, button)}
+        isActive={activeButtons.map(button => button.id).includes(button.id)}
+      />
+    </div>
   );
 }
 /**

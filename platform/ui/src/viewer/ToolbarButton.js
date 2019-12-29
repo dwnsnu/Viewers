@@ -5,6 +5,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import classnames from 'classnames';
 import { withTranslation } from '../contextProviders';
+// import '../../../viewer/src/connectedComponents/ToolbarCol.css
+// /Users/dwnusa/workspace/Viewers/platform/ui/src/viewer/ToolbarButton.js ToolbarCol
 
 export function ToolbarButton(props) {
   const { isActive, icon, labelWhenActive, onClick, t } = props;
@@ -24,13 +26,13 @@ export function ToolbarButton(props) {
   };
 
   return (
-    <div className={className} onClick={handleClick}>
-      {iconProps && <Icon {...iconProps} />}
-      <div className="toolbar-button-label">
-        {t(label)}
-        {arrowIcon}
+      <div className={className} onClick={handleClick}>
+        {iconProps && <Icon {...iconProps} />}
+        <div className="toolbar-button-label">
+          {t(label)}
+          {arrowIcon}
+        </div>
       </div>
-    </div>
   );
 }
 

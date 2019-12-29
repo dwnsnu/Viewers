@@ -43,7 +43,7 @@ export class LayoutButton extends PureComponent {
 
   render() {
     return (
-      <div className="btn-group" style={{border: 'blue solid'}}>
+      <div className="btn-group">
         <ToolbarButton
           isActive={this.state.dropdownVisible}
           label={'Layout'}
