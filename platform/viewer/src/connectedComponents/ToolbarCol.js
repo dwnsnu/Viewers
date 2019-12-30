@@ -183,7 +183,7 @@ function _getExpandableButtonComponent(button, activeButtons) {
 
 function _getDefaultButtonComponent(button, activeButtons) {
   return (
-    <div  className="ToolbarColdiv">
+    <div className="ToolbarColdiv">
       <ToolbarButton
         key={button.id}
         label={button.label}

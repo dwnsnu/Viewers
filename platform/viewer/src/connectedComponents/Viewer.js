@@ -245,49 +245,6 @@ class Viewer extends Component {
           )}
         </WhiteLabellingContext.Consumer>
 
-        {/* TOOLBAR */}
-        {/*<div style={{border:'red solid'}}>*/}
-          {/*<ConnectedToolbarRow*/}
-            {/*isLeftSidePanelOpen={this.state.isLeftSidePanelOpen}*/}
-            {/*isRightSidePanelOpen={this.state.isRightSidePanelOpen}*/}
-            {/*selectedLeftSidePanel={*/}
-              {/*this.state.isLeftSidePanelOpen*/}
-                {/*? this.state.selectedLeftSidePanel*/}
-                {/*: ''*/}
-            {/*}*/}
-            {/*selectedRightSidePanel={*/}
-              {/*this.state.isRightSidePanelOpen*/}
-                {/*? this.state.selectedRightSidePanel*/}
-                {/*: ''*/}
-            {/*}*/}
-            {/*handleSidePanelChange={(side, selectedPanel) => {*/}
-              {/*const sideClicked = side && side[0].toUpperCase() + side.slice(1);*/}
-              {/*const openKey = `is${sideClicked}SidePanelOpen`;*/}
-              {/*const selectedKey = `selected${sideClicked}SidePanel`;*/}
-              {/*const updatedState = Object.assign({}, this.state);*/}
-          {/**/}
-              {/*const isOpen = updatedState[openKey];*/}
-              {/*const prevSelectedPanel = updatedState[selectedKey];*/}
-              {/*// RoundedButtonGroup returns `null` if selected button is clicked*/}
-              {/*const isSameSelectedPanel =*/}
-                {/*prevSelectedPanel === selectedPanel || selectedPanel === null;*/}
-          {/**/}
-              {/*updatedState[selectedKey] = selectedPanel || prevSelectedPanel;*/}
-          {/**/}
-              {/*const isClosedOrShouldClose = !isOpen || isSameSelectedPanel;*/}
-              {/*if (isClosedOrShouldClose) {*/}
-                {/*updatedState[openKey] = !updatedState[openKey];*/}
-              {/*}*/}
-          {/**/}
-              {/*this.setState(updatedState);*/}
-            {/*}}*/}
-            {/*studies={this.props.studies}*/}
-          {/*/>*/}
-        {/*</div>*/}
-
-        {/*<ConnectedStudyLoadingMonitor studies={this.props.studies} />*/}
-        {/*<StudyPrefetcher studies={this.props.studies} />*/}
-
         {/* VIEWPORTS + SIDEPANELS */}
         <div className="FlexboxLayout">
           {/*/!* LEFT *!/*/}
@@ -321,20 +278,15 @@ class Viewer extends Component {
                   activeIndex={this.props.activeViewportIndex}
                 />
               ) : (
-                <div style={{width:'360px', display:'flex', alignItems:'center', justifyContent:'center', height:'100%'}}>
-                  <div >
-                    <div style={{color:'white', height:'75px',fontSize:'20px', display:'flex', alignItems:'center'}}><div style={{backgroundColor:'grey', border:'gray solid', width:'100%', justifyContent:'center', display:'flex', padding:'10px'}}>Marker (L,R)</div></div>
-                    <div style={{color:'white', height:'75px',fontSize:'20px', display:'flex', alignItems:'center'}}><div style={{backgroundColor:'grey', border:'gray solid', width:'100%', justifyContent:'center', display:'flex', padding:'10px'}}>Histogram</div></div>
-                    <div style={{color:'white', height:'75px',fontSize:'20px', display:'flex', alignItems:'center'}}><div style={{backgroundColor:'grey', border:'gray solid', width:'100%', justifyContent:'center', display:'flex', padding:'10px'}}>Brightness</div></div>
-                    <div style={{color:'white', height:'75px',fontSize:'20px', display:'flex', alignItems:'center'}}><div style={{backgroundColor:'grey', border:'gray solid', width:'100%', justifyContent:'center', display:'flex', padding:'10px'}}>Contrast</div></div>
-                    <div style={{color:'white', height:'75px',fontSize:'20px', display:'flex', alignItems:'center'}}><div style={{backgroundColor:'grey', border:'gray solid', width:'100%', justifyContent:'center', display:'flex', padding:'10px'}}>Denoise</div></div>
-                    <div style={{color:'white', height:'75px',fontSize:'20px', display:'flex', alignItems:'center'}}><div style={{backgroundColor:'grey', border:'gray solid', width:'100%', justifyContent:'center', display:'flex', padding:'10px'}}>Sharpness</div></div>
-                    <div style={{color:'white', height:'75px',fontSize:'20px', display:'flex', alignItems:'center'}}><div style={{backgroundColor:'grey', border:'gray solid', width:'100%', justifyContent:'center', display:'flex', padding:'10px'}}>AI Result</div></div>
-                    <div style={{color:'white', height:'75px',fontSize:'20px'}}></div>
-                    <div style={{color:'white', height:'75px',fontSize:'20px'}}></div>
-                    <div style={{color:'white', height:'75px',fontSize:'20px'}}></div>
-                    <div style={{color:'white', height:'75px',fontSize:'20px'}}></div>
-                    <div style={{color:'white', height:'75px',fontSize:'20px'}}></div>
+                <div style={{width:'300px', display:'flex', justifyContent:'center', height:'100%'}}>
+                  <div style={{display:'flex', flexDirection:'column'}}>
+                    <div style={{color:'white', height:'7vh',fontSize:'13px', display:'flex', alignItems:'center'}}><div style={{backgroundColor:'grey', border:'gray solid', width:'100%', justifyContent:'center', display:'flex', padding:'1vh'}}>Marker (L,R)</div></div>
+                    <div style={{color:'white', height:'7vh',fontSize:'13px', display:'flex', alignItems:'center'}}><div style={{backgroundColor:'grey', border:'gray solid', width:'100%', justifyContent:'center', display:'flex', padding:'1vh'}}>Histogram</div></div>
+                    <div style={{color:'white', height:'7vh',fontSize:'13px', display:'flex', alignItems:'center'}}><div style={{backgroundColor:'grey', border:'gray solid', width:'100%', justifyContent:'center', display:'flex', padding:'1vh'}}>Brightness</div></div>
+                    <div style={{color:'white', height:'7vh',fontSize:'13px', display:'flex', alignItems:'center'}}><div style={{backgroundColor:'grey', border:'gray solid', width:'100%', justifyContent:'center', display:'flex', padding:'1vh'}}>Contrast</div></div>
+                    <div style={{color:'white', height:'7vh',fontSize:'13px', display:'flex', alignItems:'center'}}><div style={{backgroundColor:'grey', border:'gray solid', width:'100%', justifyContent:'center', display:'flex', padding:'1vh'}}>Denoise</div></div>
+                    <div style={{color:'white', height:'7vh',fontSize:'13px', display:'flex', alignItems:'center'}}><div style={{backgroundColor:'grey', border:'gray solid', width:'100%', justifyContent:'center', display:'flex', padding:'1vh'}}>Sharpness</div></div>
+                    <div style={{color:'white', height:'7vh',fontSize:'13px', display:'flex', alignItems:'center'}}><div style={{backgroundColor:'grey', border:'gray solid', width:'100%', justifyContent:'center', display:'flex', padding:'1vh'}}>AI Result</div></div>
                   </div>
                   <div >
                     <ConnectedToolbarCol
