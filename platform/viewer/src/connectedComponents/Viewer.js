@@ -88,7 +88,7 @@ class Viewer extends Component {
   }
 
   state = {
-    isLeftSidePanelOpen: true,
+    isLeftSidePanelOpen: false,
     isRightSidePanelOpen: true,
     selectedRightSidePanel: '',
     selectedLeftSidePanel: 'studies', // TODO: Don't hardcode this
