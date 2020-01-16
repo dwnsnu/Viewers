@@ -14,6 +14,8 @@ import ConnectedViewerMain from './ConnectedViewerMain.js';
 import SidePanel from './../components/SidePanel.js';
 import { extensionManager } from './../App.js';
 import cornerstone from 'cornerstone-core';
+// import HistIcon from './histogram.png';
+// import histIcon from './histogram.png';
 // Contexts
 import WhiteLabellingContext from '../context/WhiteLabellingContext.js';
 import UserManagerContext from '../context/UserManagerContext';
@@ -329,6 +331,7 @@ class Viewer extends Component {
               ) : (
                 <div
                   style={{
+                    // border:'red solid',
                     width: '300px',
                     display: 'flex',
                     justifyContent: 'center',
@@ -350,44 +353,37 @@ class Viewer extends Component {
                         alignItems: 'center',
                       }}
                     >
-                      <div
-                        style={{
-                          backgroundColor: 'grey',
-                          border: 'gray solid',
-                          width: '100%',
-                          justifyContent: 'center',
-                          display: 'flex',
-                          padding: '1vh',
-                        }}
-                      >
-                        Histogram
+                      {/*<div style={{ color: 'white', height: '7vh', fontSize: '13px', display: 'flex', alignItems: 'center' }}><div style={{ backgroundColor: 'grey', border: 'gray solid', width: '100%', justifyContent: 'center', display: 'flex', padding: '1vh' }}>Brightness</div></div>*/}
+                      <div style={{ width: '100%',justifyContent: 'center', alignItems:'center',display: 'flex', flexDirection:'column',padding: '1vh'}}>
+                        <img style={{width:'30px', height:'30px'}} src="data:image/svg+xml;base64, PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iNTEyIiB2aWV3Qm94PSIwIDAgNTEyIDUxMiIgd2lkdGg9IjUxMiIgY2xhc3M9IiI+PGc+PHBhdGggZD0ibTQ0Ni40NjQ4NDQgNDA3LjM1NTQ2OWMtMTguOTAyMzQ0LTQ0LjE5MTQwNy0zMi4xOTkyMTktMTA0LjkyMTg3NS00NS4wNTg1OTQtMTYzLjY1NjI1LTEyLjUyNzM0NC01Ny4yMTA5MzgtMjUuNDg0Mzc1LTExNi4zNzEwOTQtNDMuODYzMjgxLTE2MC42MDkzNzUtMTAuNTA3ODEzLTI1LjI5Njg3NS0yMi4wNTg1OTQtNDQuMTY0MDYzLTM1LjMwNDY4OC01Ny42Nzk2ODgtMTYuNTI3MzQzLTE2Ljg1OTM3NS0zNS43ODUxNTYtMjUuNDEwMTU2LTU3LjIzODI4MS0yNS40MTAxNTYtMjEuMzQ3NjU2IDAtNDAuNDcyNjU2IDguNDY0ODQ0LTU2LjgzOTg0NCAyNS4xNjQwNjItMTMuMTIxMDk0IDEzLjM4NjcxOS0yNC41MTU2MjUgMzIuMDc0MjE5LTM0LjgzNTkzNyA1Ny4xMjUtMTguMDI3MzQ0IDQzLjc3MzQzOC0zMC4wNTQ2ODggOTkuODI0MjE5LTQyLjc4NTE1NyAxNTkuMTcxODc2LTEyLjY5MTQwNiA1OS4xNzU3ODEtMjUuODE2NDA2IDEyMC4zNjMyODEtNDQuOTIxODc0IDE2NS4wMDM5MDYtMTUuNzk2ODc2IDM2LjkxNzk2OC0zMS43MzgyODIgNTMuMzE2NDA2LTQ1LjYxNzE4OCA2MC40MDIzNDR2LTQ2Ni44NjcxODhoLTQwdjUxMmg1MTJ2LTQwYy0xNi4yNjU2MjUgMC00MC43NTM5MDYtNi42OTkyMTktNjUuNTM1MTU2LTY0LjY0NDUzMXptLTI3Ni44MTI1LTE1Ny41MDc4MTNjMTIuMzM5ODQ0LTU3LjUzNTE1NiAyNC0xMTEuODc4OTA2IDQwLjY2MDE1Ni0xNTIuMzI0MjE4IDIxLjIzODI4MS01MS41NTg1OTQgNDEuMzgyODEyLTU3LjUyMzQzOCA1NC42ODc1LTU3LjUyMzQzOCAxMy40NDUzMTIgMCAzMy44NDM3NSA2LjA1ODU5NCA1NS42MDU0NjkgNTguNDM3NSAxNy4wMDc4MTIgNDAuOTM3NSAyOS41NzQyMTkgOTguMzI0MjE5IDQxLjcyNjU2MiAxNTMuODIwMzEyIDEzLjI1NzgxMyA2MC41NDY4NzYgMjYuOTY4NzUgMTIzLjE1NjI1IDQ3LjM1NTQ2OSAxNzAuODI0MjE5IDguNDg0Mzc1IDE5LjgzOTg0NCAxNy42MjUgMzUuOTg0Mzc1IDI3LjcwNzAzMSA0OC45MTc5NjloLTM0My40Mjk2ODdjMTAuMzkwNjI1LTEzLjEzNjcxOSAxOS43Njk1MzEtMjkuNTcwMzEyIDI4LjQyOTY4Ny00OS44MDA3ODEgMjAuNjI1LTQ4LjE5NTMxMyAzNC4xNjQwNjMtMTExLjMxMjUgNDcuMjU3ODEzLTE3Mi4zNTE1NjN6bTAgMCIgZGF0YS1vcmlnaW5hbD0iIzAwMDAwMCIgY2xhc3M9ImFjdGl2ZS1wYXRoIiBzdHlsZT0iZmlsbDojOUNDRUY5IiBkYXRhLW9sZF9jb2xvcj0iIzAwMDAwMCI+PC9wYXRoPjwvZz4gPC9zdmc+" />
+                        <div style={{color:'#9CCEF9', fontSize:'12px'}}>Histogram</div>
                       </div>
                     </div>
                     {/* <div style={{ color: 'white', height: '7vh', fontSize: '13px', display: 'flex', alignItems: 'center' }}><div style={{ backgroundColor: 'grey', border: 'gray solid', width: '100%', justifyContent: 'center', display: 'flex', padding: '1vh' }}>Brightness</div></div> */}
                     {/* <div style={{ color: 'white', height: '7vh', fontSize: '13px', display: 'flex', alignItems: 'center' }}><div style={{ backgroundColor: 'grey', border: 'gray solid', width: '100%', justifyContent: 'center', display: 'flex', padding: '1vh' }}>Contrast</div></div> */}
                     {/* <div style={{ color: 'white', height: '7vh', fontSize: '13px', display: 'flex', alignItems: 'center' }}><div style={{ backgroundColor: 'grey', border: 'gray solid', width: '100%', justifyContent: 'center', display: 'flex', padding: '1vh' }}>Denoise</div></div> */}
-                    <div
-                      style={{
-                        color: 'white',
-                        height: '7vh',
-                        fontSize: '13px',
-                        display: 'flex',
-                        alignItems: 'center',
-                      }}
-                    >
-                      {/* <div
-                        style={{
-                          backgroundColor: 'grey',
-                          border: 'gray solid',
-                          width: '100%',
-                          justifyContent: 'center',
-                          display: 'flex',
-                          padding: '1vh',
-                        }}
-                      >
-                        Sharpness
-                      </div> */}
-                    </div>
+                    {/*<div*/}
+                    {/*style={{*/}
+                    {/*color: 'white',*/}
+                    {/*height: '7vh',*/}
+                    {/*fontSize: '13px',*/}
+                    {/*display: 'flex',*/}
+                    {/*alignItems: 'center',*/}
+                    {/*}}*/}
+                    {/*>*/}
+                    {/*/!* <div*/}
+                    {/*style={{*/}
+                    {/*backgroundColor: 'grey',*/}
+                    {/*border: 'gray solid',*/}
+                    {/*width: '100%',*/}
+                    {/*justifyContent: 'center',*/}
+                    {/*display: 'flex',*/}
+                    {/*padding: '1vh',*/}
+                    {/*}}*/}
+                    {/*>*/}
+                    {/*Sharpness*/}
+                    {/*</div> *!/*/}
+                    {/*</div>*/}
                     {/* <div style={{ color: 'white', height: '7vh', fontSize: '13px', display: 'flex', alignItems: 'center' }}><div style={{ backgroundColor: 'grey', border: 'gray solid', width: '100%', justifyContent: 'center', display: 'flex', padding: '1vh' }}>AI Result</div></div> */}
                   </div>
                   <div>
