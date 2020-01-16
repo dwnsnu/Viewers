@@ -17,6 +17,7 @@ import { lrpoint } from './lrpoint';
 import { lpoint } from './lpoint';
 import { rpoint } from './rpoint';
 import { point } from './point';
+import { textmarker } from './textmarker';
 
 export {
   arrowAnnotate,
@@ -38,4 +39,5 @@ export {
   lpoint,
   rpoint,
   point,
+  textmarker,
 };

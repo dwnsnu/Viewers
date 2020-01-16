@@ -7,11 +7,11 @@ const displayFunction = data => {
   return meanValue;
 };
 
-export const circleRoi = {
-  id: 'CircleRoi',
-  name: 'Circle',
+export const textmarker = {
+  id: 'TextMarker',
+  name: 'TextMarker',
   toolGroup: 'allTools',
-  cornerstoneToolType: 'CircleRoi',
+  cornerstoneToolType: 'TextMarker',
   options: {
     measurementTable: {
       displayFunction,
