@@ -5,6 +5,8 @@
 ```  
 ####2. 브랜치 확인
 - 폴더 내부로 이동 후 브랜치 확인
+
+
 ```
 >> cd MineViewer-OHIF
 >> git branch
@@ -16,6 +18,8 @@ HDT2.0
 ```
 ####4. 라이브러리 패치 (수작업)
 - 경로이동 후, 파일 복사
+
+
 ```$xslt
 >> cd jhjin-patch
 >> cp -rf dist node_modules/cornerstone-tools/dist
