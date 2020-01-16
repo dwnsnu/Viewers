@@ -38,24 +38,33 @@ const definitions = [
   {
     id: 'StackScroll',
     label: 'Stack Scroll',
-    icon: 'bars',
+    icon: 'stack-scroll_jlk',
+//    icon: 'bars',
     //
     type: TOOLBAR_BUTTON_TYPES.SET_TOOL_ACTIVE,
     commandName: 'setToolActive',
     commandOptions: { toolName: 'StackScroll' },
   },
   {
-    id: 'Zoom',
+    id: 'Magnify',
     label: 'Zoom',
-    icon: 'search-plus',
+    icon: 'zoom_jlk',
     //
     type: TOOLBAR_BUTTON_TYPES.SET_TOOL_ACTIVE,
-    commandOptions: { toolName: 'Zoom' },
-  },
+    commandName: 'setToolActive',
+    commandOptions: { toolName: 'Magnify' },
+  },  // {
+  //   id: 'Zoom',
+  //   label: 'Zoom',
+  //   icon: 'search-plus',
+  //   //
+  //   type: TOOLBAR_BUTTON_TYPES.SET_TOOL_ACTIVE,
+  //   commandOptions: { toolName: 'Zoom' },
+  // },
   {
     id: 'Wwwc',
     label: 'Levels',
-    icon: 'level',
+    icon: 'levels_jlk',
     //
     type: TOOLBAR_BUTTON_TYPES.SET_TOOL_ACTIVE,
     commandName: 'setToolActive',
@@ -64,7 +73,7 @@ const definitions = [
   {
     id: 'Sharpness',
     label: 'Sharpness',
-    icon: 'level',
+    icon: 'sharpness_jlk',
     //
     type: TOOLBAR_BUTTON_TYPES.COMMAND,
     commandName: 'changeSharpness',
@@ -72,7 +81,7 @@ const definitions = [
   {
     id: 'Pan',
     label: 'Pan',
-    icon: 'arrows',
+    icon: 'pan_jlk',
     //
     type: TOOLBAR_BUTTON_TYPES.SET_TOOL_ACTIVE,
     commandName: 'setToolActive',
@@ -81,7 +90,7 @@ const definitions = [
   {
     id: 'Reset',
     label: 'Reset',
-    icon: 'reset',
+    icon: 'reset_jlk',
     //
     type: TOOLBAR_BUTTON_TYPES.COMMAND,
     commandName: 'resetViewport',
@@ -89,7 +98,7 @@ const definitions = [
   {
     id: 'ScaleOverlay',
     label: 'Scale',
-    icon: 'square-o',
+    icon: 'scale_jlk',
     //
     type: TOOLBAR_BUTTON_TYPES.COMMAND,
     commandName: 'setRuler',
@@ -97,26 +106,26 @@ const definitions = [
   {
     id: 'ArrowAnnotate',
     label: 'Annotate',
-    icon: 'measure-non-target',
+    icon: 'arrow-tag_jlk',
     //
     type: TOOLBAR_BUTTON_TYPES.SET_TOOL_ACTIVE,
     commandName: 'setToolActive',
     commandOptions: { toolName: 'ArrowAnnotate' },
   },
-  {
-    id: 'Cine',
-    label: 'CINE',
-    icon: 'youtube',
-    //
-    type: TOOLBAR_BUTTON_TYPES.BUILT_IN,
-    options: {
-      behavior: TOOLBAR_BUTTON_BEHAVIORS.CINE,
-    },
-  },
+  // {
+  //   id: 'Cine',
+  //   label: 'CINE',
+  //   icon: 'youtube',
+  //   //
+  //   type: TOOLBAR_BUTTON_TYPES.BUILT_IN,
+  //   options: {
+  //     behavior: TOOLBAR_BUTTON_BEHAVIORS.CINE,
+  //   },
+  // },
   {
     id: 'TextMarker',
     label: 'Text',
-    icon: 'square-o',
+    icon: 'text_jlk',
     //
     type: TOOLBAR_BUTTON_TYPES.SET_TOOL_ACTIVE,
     commandName: 'setToolActive',
@@ -125,12 +134,12 @@ const definitions = [
   {
     id: 'LRpoint',
     label: 'L,R marker',
-    icon: 'ellipse-circle',
+    icon: 'lr-point_jlk',
     buttons: [
     {
       id: 'Lpoint',
-      label: 'L',
-      icon: 'square-o',
+      label: '',
+      icon: 'l-point_jlk',
       //
       type: TOOLBAR_BUTTON_TYPES.SET_TOOL_ACTIVE,
       commandName: 'setToolActive',
@@ -138,8 +147,8 @@ const definitions = [
     },
     {
       id: 'Rpoint',
-      label: 'R',
-      icon: 'square-o',
+      label: '',
+      icon: 'r-point_jlk',
       //
       type: TOOLBAR_BUTTON_TYPES.SET_TOOL_ACTIVE,
       commandName: 'setToolActive',
@@ -150,12 +159,12 @@ const definitions = [
   {
     id: 'Measurement',
     label: 'Measurement',
-    icon: 'ellipse-circle',
+    icon: 'measurement_jlk',
     buttons: [
       {
         id: 'Length',
         label: 'Length',
-        icon: 'measure-temp',
+        icon: 'length_jlk',
        //
         type: TOOLBAR_BUTTON_TYPES.SET_TOOL_ACTIVE,
         commandName: 'setToolActive',
@@ -164,7 +173,7 @@ const definitions = [
       {
         id: 'Angle',
         label: 'Angle',
-        icon: 'angle-left',
+        icon: 'angle_jlk',
         //
         type: TOOLBAR_BUTTON_TYPES.SET_TOOL_ACTIVE,
         commandName: 'setToolActive',
@@ -175,12 +184,12 @@ const definitions = [
   {
     id: 'Annotation Tool Kit',
     label: 'Annotation Tool Kit',
-    icon: 'ellipse-circle',
+    icon: 'annotation-tool-kit_jlk',
     buttons: [
       {
         id: 'Point',
         label: 'Point',
-        icon: 'dot-circle',
+        icon: 'point_jlk',
         //
         type: TOOLBAR_BUTTON_TYPES.SET_TOOL_ACTIVE,
         commandName: 'setToolActive',
@@ -189,7 +198,7 @@ const definitions = [
       {
         id: 'Line',
         label: 'Line',
-        icon: 'dot-circle',
+        icon: 'line_jlk',
         //
         type: TOOLBAR_BUTTON_TYPES.SET_TOOL_ACTIVE,
         commandName: 'setToolActive',
@@ -198,7 +207,7 @@ const definitions = [
       {
         id: 'Polyline',
         label: 'Polyline',
-        icon: 'dot-circle',
+        icon: 'polyline_jlk',
         //
         type: TOOLBAR_BUTTON_TYPES.SET_TOOL_ACTIVE,
         commandName: 'setToolActive',
@@ -207,7 +216,7 @@ const definitions = [
       {
         id: 'Polygon',
         label: 'Polygon',
-        icon: 'dot-circle',
+        icon: 'polygon_jlk',
         //
         type: TOOLBAR_BUTTON_TYPES.SET_TOOL_ACTIVE,
         commandName: 'setToolActive',
@@ -216,7 +225,7 @@ const definitions = [
       {
         id: 'EllipticalRoi',
         label: 'Ellipse',
-        icon: 'circle-o',
+        icon: 'ellipse_jlk',
         //
         type: TOOLBAR_BUTTON_TYPES.SET_TOOL_ACTIVE,
         commandName: 'setToolActive',
@@ -225,21 +234,21 @@ const definitions = [
       {
         id: 'RectangleRoi',
         label: 'Rectangle',
-        icon: 'square-o',
+        icon: 'rectangle_jlk',
         //
         type: TOOLBAR_BUTTON_TYPES.SET_TOOL_ACTIVE,
         commandName: 'setToolActive',
         commandOptions: { toolName: 'RectangleRoi' },
       },
-       {
-         id: 'Bidirectional',
-         label: 'Bidirectional',
-         icon: 'measure-target',
-         //
-         type: TOOLBAR_BUTTON_TYPES.SET_TOOL_ACTIVE,
-         commandName: 'setToolActive',
-         commandOptions: { toolName: 'Bidirectional' },
-       },
+       // {
+       //   id: 'Bidirectional',
+       //   label: 'Bidirectional',
+       //   icon: 'measure-target',
+       //   //
+       //   type: TOOLBAR_BUTTON_TYPES.SET_TOOL_ACTIVE,
+       //   commandName: 'setToolActive',
+       //   commandOptions: { toolName: 'Bidirectional' },
+       // },
     ],
   },
   {
@@ -247,15 +256,6 @@ const definitions = [
     label: 'More',
     icon: 'ellipse-circle',
     buttons: [
-      {
-        id: 'Magnify',
-        label: 'Magnify',
-        icon: 'circle',
-        //
-        type: TOOLBAR_BUTTON_TYPES.SET_TOOL_ACTIVE,
-        commandName: 'setToolActive',
-        commandOptions: { toolName: 'Magnify' },
-      },
       // {
       //   id: 'WwwcRegion',
       //   label: 'ROI Window',
@@ -268,7 +268,7 @@ const definitions = [
       {
         id: 'DragProbe',
         label: 'Probe',
-        icon: 'dot-circle',
+        icon: 'probe_jlk',
         //
         type: TOOLBAR_BUTTON_TYPES.SET_TOOL_ACTIVE,
         commandName: 'setToolActive',
@@ -277,7 +277,7 @@ const definitions = [
       {
         id: 'Invert',
         label: 'Invert',
-        icon: 'adjust',
+        icon: 'invert_jlk',
         //
         type: TOOLBAR_BUTTON_TYPES.COMMAND,
         commandName: 'invertViewport',
@@ -285,7 +285,7 @@ const definitions = [
       {
         id: 'RotateRight',
         label: 'Rotate Right',
-        icon: 'rotate-right',
+        icon: 'rotate-right_jlk',
         //
         type: TOOLBAR_BUTTON_TYPES.COMMAND,
         commandName: 'rotateViewportCW',
@@ -293,7 +293,7 @@ const definitions = [
       {
         id: 'FlipH',
         label: 'Flip H',
-        icon: 'ellipse-h',
+        icon: 'flip-h_jlk',
         //
         type: TOOLBAR_BUTTON_TYPES.COMMAND,
         commandName: 'flipViewportHorizontal',
@@ -301,7 +301,7 @@ const definitions = [
       {
         id: 'FlipV',
         label: 'Flip V',
-        icon: 'ellipse-v',
+        icon: 'flip-v_jlk',
         //
         type: TOOLBAR_BUTTON_TYPES.COMMAND,
         commandName: 'flipViewportVertical',
@@ -309,7 +309,7 @@ const definitions = [
       {
         id: 'Clear',
         label: 'Clear',
-        icon: 'trash',
+        icon: 'clear_jlk',
         //
         type: TOOLBAR_BUTTON_TYPES.COMMAND,
         commandName: 'clearAnnotations',
@@ -317,7 +317,7 @@ const definitions = [
       {
         id: 'Eraser',
         label: 'Eraser',
-        icon: 'eraser',
+        icon: 'eraser_jlk',
         //
         type: TOOLBAR_BUTTON_TYPES.SET_TOOL_ACTIVE,
         commandName: 'setToolActive',
@@ -326,7 +326,7 @@ const definitions = [
       {
         id: 'Download',
         label: 'Download',
-        icon: 'create-screen-capture',
+        icon: 'download_jlk',
         //
         type: TOOLBAR_BUTTON_TYPES.BUILT_IN,
         options: {

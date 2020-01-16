@@ -82,6 +82,44 @@ import times from './icons/times.svg';
 import trash from './icons/trash.svg';
 import user from './icons/user.svg';
 import youtube from './icons/youtube.svg';
+import angle_jlk from './icons/angle_jlk.svg';
+import annotation_tool_kit_jlk from './icons/annotation-tool-kit_jlk.svg';
+import arrow_tag_jlk from './icons/arrow-tag_jlk.svg';
+import bidirectional_jlk from './icons/bidirectional_jlk.svg';
+import cine_jlk from './icons/cine_jlk.svg';
+import clear_jlk from './icons/clear_jlk.svg';
+import download_jlk from './icons/download_jlk.svg';
+import ellipse_jlk from './icons/ellipse_jlk.svg';
+import eraser_jlk from './icons/eraser_jlk.svg';
+import flip_h_jlk from './icons/flip-h_jlk.svg';
+import flip_v_jlk from './icons/flip-v_jlk.svg';
+import histogram_jlk from './icons/histogram_jlk.svg';
+import invert_jlk from './icons/invert_jlk.svg';
+import layout_jlk from './icons/layout_jlk.svg';
+import length_jlk from './icons/length_jlk.svg';
+import levels_jlk from './icons/levels_jlk.svg';
+import line_jlk from './icons/line_jlk.svg';
+import lr_point_jlk from './icons/lr-point_jlk.svg';
+import magnify_jlk from './icons/magnify_jlk.svg';
+import measurement_jlk from './icons/measurement_jlk.svg';
+import pan_jlk from './icons/pan_jlk.svg';
+import point_jlk from './icons/point_jlk.svg';
+import polygon_jlk from './icons/polygon_jlk.svg';
+import polyline_jlk from './icons/polyline_jlk.svg';
+import probe_jlk from './icons/probe_jlk.svg';
+import rectangle_jlk from './icons/rectangle_jlk.svg';
+import reset_jlk from './icons/reset_jlk.svg';
+import roi_window_jlk from './icons/roi-window_jlk.svg';
+import rotate_right_jlk from './icons/rotate-right_jlk.svg';
+import sharpness_jlk from './icons/sharpness_jlk.svg';
+import stack_scroll_down_jlk from './icons/stack-scroll-down_jlk.svg';
+import stack_scroll_up_jlk from './icons/stack_scroll-up_jlk.svg';
+import text_jlk from './icons/text_jlk.svg';
+import zoom_jlk from './icons/zoom_jlk.svg';
+import scale_jlk from './icons/scale_jlk.svg';
+import stack_scroll_jlk from './icons/stack-scroll_jlk.svg';
+import r_point_jlk from './icons/r-point_jlk.svg';
+import l_point_jlk from './icons/l-point_jlk.svg';
 
 const ICONS = {
   user,
@@ -166,6 +204,45 @@ const ICONS = {
   'soft-tissue': softTissue,
   lung,
   liver,
+  'angle_jlk': angle_jlk,
+  'annotation-tool-kit_jlk': annotation_tool_kit_jlk,
+  'arrow-tag_jlk': arrow_tag_jlk,
+  'bidirectional_jlk': bidirectional_jlk,
+  'cine_jlk': cine_jlk,
+  'clear_jlk': clear_jlk,
+  'download_jlk': download_jlk,
+  'ellipse_jlk': ellipse_jlk,
+  'eraser_jlk': eraser_jlk,
+  'flip-h_jlk': flip_h_jlk,
+  'flip-v_jlk': flip_v_jlk,
+  'histogram_jlk': histogram_jlk,
+  'invert_jlk': invert_jlk,
+  'layout_jlk': layout_jlk,
+  'length_jlk': length_jlk,
+  'levels_jlk': levels_jlk,
+  'line_jlk': line_jlk,
+  'lr-point_jlk': lr_point_jlk,
+  'magnify_jlk': magnify_jlk,
+  'measurement_jlk': measurement_jlk,
+  'pan_jlk': pan_jlk,
+  'point_jlk': point_jlk,
+  'polygon_jlk': polygon_jlk,
+  'polyline_jlk': polyline_jlk,
+  'probe_jlk': probe_jlk,
+  'rectangle_jlk': rectangle_jlk,
+  'reset_jlk': reset_jlk,
+  'roi-window_jlk': roi_window_jlk,
+  'rotate-right_jlk': rotate_right_jlk,
+  'sharpness_jlk': sharpness_jlk,
+  'stack-scroll-down_jlk': stack_scroll_down_jlk,
+  'stack_scroll-up_jlk': stack_scroll_up_jlk,
+  stack_scroll_down_jlk,
+  'text_jlk': text_jlk,
+  'zoom_jlk': zoom_jlk,  
+  'stack-scroll_jlk': stack_scroll_jlk,  
+  'r-point_jlk': r_point_jlk,  
+  'l-point_jlk': l_point_jlk,  
+  'scale_jlk': scale_jlk,  
 };
 
 /**

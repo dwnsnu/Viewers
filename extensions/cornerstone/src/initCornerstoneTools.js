@@ -20,7 +20,7 @@ export default function(configuration = {}) {
 
   // Tool styles/colors
   cornerstoneTools.toolStyle.setToolWidth(2);
-  cornerstoneTools.toolColors.setToolColor('rgb(255, 255, 0)');
+  cornerstoneTools.toolColors.setToolColor('rgb(255, 145, 0)');
   cornerstoneTools.toolColors.setActiveColor('rgb(0, 255, 0)');
 
   cornerstoneTools.store.state.touchProximity = 40;

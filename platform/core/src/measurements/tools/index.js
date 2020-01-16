@@ -16,6 +16,7 @@ import { targetUN } from './targetUN';
 import { lrpoint } from './lrpoint';
 import { lpoint } from './lpoint';
 import { rpoint } from './rpoint';
+import { point } from './point';
 
 export {
   arrowAnnotate,
@@ -36,4 +37,5 @@ export {
   lrpoint,
   lpoint,
   rpoint,
+  point,
 };
