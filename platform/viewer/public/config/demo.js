@@ -57,6 +57,7 @@ window.config = {
       keys: ['pageup'],
     },
     { commandName: 'setZoomTool', label: 'Zoom', keys: ['z'] },
+    { commandName: 'setScaleOverlayTool', label: 'ScaleOverlay', keys: ['s'] },
   ],
   i18n: {
     LOCIZE_PROJECTID: 'a8da3f9a-e467-4dd6-af33-474d582a0294',

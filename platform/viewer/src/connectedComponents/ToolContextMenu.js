@@ -15,6 +15,12 @@ const toolTypes = [
   'EllipticalRoi',
   'CircleRoi',
   'RectangleRoi',
+  'Point',
+  'Line',
+  'Polyline',
+  'Polygon',
+  'TextMarker',
+  'LRpoint',
 ];
 
 let defaultDropdownItems = [

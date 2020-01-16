@@ -45,6 +45,27 @@ describe('OHIF Cornerstone Toolbar', () => {
     cy.get('@layoutBtn')
       .should('be.visible')
       .contains('Layout');
+    cy.get('@pointBtn')
+      .should('be.visible')
+      .contains('Point');
+    cy.get('@lineBtn')
+      .should('be.visible')
+      .contains('Line');
+    cy.get('@polylineBtn')
+      .should('be.visible')
+      .contains('Polyline');
+    cy.get('@polygonBtn')
+      .should('be.visible')
+      .contains('Polygon');
+    cy.get('@textmarkerBtn')
+      .should('be.visible')
+      .contains('TextMarker');
+    cy.get('@lrpointBtn')
+      .should('be.visible')
+      .contains('LRpoint');
+    cy.get('@scaleoverlayBtn')
+      .should('be.visible')
+      .contains('ScaleOverlay');
   });
 
   it('checks if Stack Scroll tool will navigate across all series in the viewport', () => {
@@ -81,6 +102,15 @@ describe('OHIF Cornerstone Toolbar', () => {
 
     const expectedText = 'Zoom: 50%W: 958 L: 479Lossless / Uncompressed';
     cy.get('@viewportInfoBottomRight').should('have.text', expectedText);
+  });
+
+  it('checks if ScaleOverlay tool will make scale on image in the viewport', () => {
+    //Click on button and verify if icon is active on toolbar
+    cy.get('@scaleoverlayBtn')
+      .click()
+      .then($scaleoverlayBtn => {
+        cy.wrap($scaleoverlayBtn).should('have.class', 'active');
+      });
   });
 
   it('checks if Levels tool will change the contrast and brightness of an image in the viewport', () => {
@@ -162,6 +192,162 @@ describe('OHIF Cornerstone Toolbar', () => {
     const midPos = [300, 410];
     const finalPos = [180, 450];
     cy.addAngle('@viewport', initPos, midPos, finalPos);
+
+    //Verify if measurement annotation was added into the measurements panel
+    cy.get('@measurementsBtn')
+      .click()
+      .then($measurementsBtn => {
+        cy.get('@measurementsPanel').should('be.visible');
+
+        cy.get('.measurementItem')
+          .its('length')
+          .should('be.eq', 1);
+
+        cy.wrap($measurementsBtn).click();
+      });
+  });
+
+  it('checks if Point annotation can be added on viewport and on measurements panel', () => {
+    //Click on button and vefiry if icon is active on toolbar
+    cy.get('@pointBtn')
+      .click()
+      .then($pointBtn => {
+        cy.wrap($pointBtn).should('have.class', 'active');
+      });
+
+    //Add annotation on the viewport
+    const clickPoint = [180, 390];
+    cy.pointPoint('@viewport', clickPoint);
+
+    //Verify if measurement annotation was added into the measurements panel
+    cy.get('@measurementsBtn')
+      .click()
+      .then($measurementsBtn => {
+        cy.get('@measurementsPanel').should('be.visible');
+
+        cy.get('.measurementItem')
+          .its('length')
+          .should('be.eq', 1);
+
+        cy.wrap($measurementsBtn).click();
+      });
+  });
+
+  it('checks if Line annotation can be added on viewport and on measurements panel', () => {
+    //Click on button and vefiry if icon is active on toolbar
+    cy.get('@lineBtn')
+      .click()
+      .then($lineBtn => {
+        cy.wrap($lineBtn).should('have.class', 'active');
+      });
+
+    //Add annotation on the viewport
+    const clickPoint = [180, 390];
+    cy.addPoint('@viewport', clickPoint);
+
+    //Verify if measurement annotation was added into the measurements panel
+    cy.get('@measurementsBtn')
+      .click()
+      .then($measurementsBtn => {
+        cy.get('@measurementsPanel').should('be.visible');
+
+        cy.get('.measurementItem')
+          .its('length')
+          .should('be.eq', 1);
+
+        cy.wrap($measurementsBtn).click();
+      });
+  });
+
+  it('checks if Polyline annotation can be added on viewport and on measurements panel', () => {
+    //Click on button and vefiry if icon is active on toolbar
+    cy.get('@polylineBtn')
+      .click()
+      .then($polylineBtn => {
+        cy.wrap($polylineBtn).should('have.class', 'active');
+      });
+
+    //Add annotation on the viewport
+    const clickPoint = [180, 390];
+    cy.pointPoint('@viewport', clickPoint);
+
+    //Verify if measurement annotation was added into the measurements panel
+    cy.get('@measurementsBtn')
+      .click()
+      .then($measurementsBtn => {
+        cy.get('@measurementsPanel').should('be.visible');
+
+        cy.get('.measurementItem')
+          .its('length')
+          .should('be.eq', 1);
+
+        cy.wrap($measurementsBtn).click();
+      });
+  });
+
+  it('checks if Polygon annotation can be added on viewport and on measurements panel', () => {
+    //Click on button and vefiry if icon is active on toolbar
+    cy.get('@polygonBtn')
+      .click()
+      .then($polygonBtn => {
+        cy.wrap($polygonBtn).should('have.class', 'active');
+      });
+
+    //Add annotation on the viewport
+    const clickPoint = [180, 390];
+    cy.pointPoint('@viewport', clickPoint);
+
+    //Verify if measurement annotation was added into the measurements panel
+    cy.get('@measurementsBtn')
+      .click()
+      .then($measurementsBtn => {
+        cy.get('@measurementsPanel').should('be.visible');
+
+        cy.get('.measurementItem')
+          .its('length')
+          .should('be.eq', 1);
+
+        cy.wrap($measurementsBtn).click();
+      });
+  });
+
+  it('checks if TextMarker annotation can be added on viewport and on measurements panel', () => {
+    //Click on button and vefiry if icon is active on toolbar
+    cy.get('@textmarkerBtn')
+      .click()
+      .then($textmarkerBtn => {
+        cy.wrap($textmarkerBtn).should('have.class', 'active');
+      });
+
+    //Add annotation on the viewport
+    const clickPoint = [180, 390];
+      cy.addtextmarker('@viewport', clickPoint);
+
+    //Verify if measurement annotation was added into the measurements panel
+    cy.get('@measurementsBtn')
+      .click()
+      .then($measurementsBtn => {
+        cy.get('@measurementsPanel').should('be.visible');
+
+        cy.get('.measurementItem')
+          .its('length')
+          .should('be.eq', 1);
+
+        cy.wrap($measurementsBtn).click();
+      });
+  });
+
+  it('checks if LRpoint can be added on viewport and on measurements panel', () => {
+    //Click on button and vefiry if icon is active on toolbar
+    cy.get('@lrpointBtn')
+      .click()
+      .then($lrpointBtn => {
+        cy.wrap($lrpointBtn).should('have.class', 'active');
+      });
+
+    //Add annotation on the viewport
+    const clickPoint = [180, 390];
+      cy.addtextmarker('@viewport', clickPoint);
 
     //Verify if measurement annotation was added into the measurements panel
     cy.get('@measurementsBtn')

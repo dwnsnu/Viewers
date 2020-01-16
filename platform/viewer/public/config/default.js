@@ -68,5 +68,6 @@ window.config = {
     },
     // ~ Cornerstone Tools
     { commandName: 'setZoomTool', label: 'Zoom', keys: ['z'] },
+    { commandName: 'setScaleOverlayTool', label: 'ScaleOverlay', keys: ['s'] },
   ],
 };

@@ -19,6 +19,7 @@ import WhiteLabellingContext from '../context/WhiteLabellingContext.js';
 import UserManagerContext from '../context/UserManagerContext';
 
 import './Viewer.css';
+// import Histogram from './Histogram.js';
 /**
  * Inits OHIF Hanging Protocol's onReady.
  * It waits for OHIF Hanging Protocol to be ready to instantiate the ProtocolEngine
@@ -55,6 +56,8 @@ OHIF.viewer.functionList = {
     invert: viewportUtils.invert
 };*/
 
+// var imageId = null
+// console.log("imageId", imageId)
 class Viewer extends Component {
   static propTypes = {
     studies: PropTypes.array,
@@ -93,6 +96,8 @@ class Viewer extends Component {
     selectedRightSidePanel: '',
     selectedLeftSidePanel: 'studies', // TODO: Don't hardcode this
     thumbnails: [],
+    isDicom: false,
+    // imageId : null
   };
 
   retrieveMeasurements = (patientId, timepointIds) => {
@@ -213,6 +218,7 @@ class Viewer extends Component {
       this.setState({
         thumbnails: _mapStudiesToThumbnails(studies),
       });
+      console.log('thumbnails', this.state.thumbnails);
     }
   }
 
@@ -248,7 +254,7 @@ class Viewer extends Component {
         {/* VIEWPORTS + SIDEPANELS */}
         <div className="FlexboxLayout">
           {/*/!* LEFT *!/*/}
-          <div >
+          <div>
             <SidePanel from="left" isOpen={this.state.isLeftSidePanelOpen}>
               {VisiblePanelLeft ? (
                 <VisiblePanelLeft
@@ -269,8 +275,12 @@ class Viewer extends Component {
             <ConnectedViewerMain studies={this.props.studies} />
           </div>
 
+          {/* {this.state.loadImage && <Histogram loadImage={this.state.loadImage} isDicom={this.state.isDicom} />} */}
+          {/* {console.log(".this.state.thumbnails", this.state.thumbnails[0] !==undefined ? this.state.thumbnails[0] : '')} */}
+          {/* {<Histogram loadImage={this.state.thumbnails[0].} isDicom={this.state.isDicom} />}       */}
           {/* RIGHT */}
-          <div >
+          {/* {console.log("viewer-this.props", this.props)} */}
+          <div>
             <SidePanel from="right" isOpen={this.state.isRightSidePanelOpen}>
               {VisiblePanelRight ? (
                 <VisiblePanelRight
@@ -278,17 +288,171 @@ class Viewer extends Component {
                   activeIndex={this.props.activeViewportIndex}
                 />
               ) : (
-                <div style={{width:'300px', display:'flex', justifyContent:'center', height:'100%'}}>
-                  <div style={{display:'flex', flexDirection:'column'}}>
-                    <div style={{color:'white', height:'7vh',fontSize:'13px', display:'flex', alignItems:'center'}}><div style={{backgroundColor:'grey', border:'gray solid', width:'100%', justifyContent:'center', display:'flex', padding:'1vh'}}>Marker (L,R)</div></div>
-                    <div style={{color:'white', height:'7vh',fontSize:'13px', display:'flex', alignItems:'center'}}><div style={{backgroundColor:'grey', border:'gray solid', width:'100%', justifyContent:'center', display:'flex', padding:'1vh'}}>Histogram</div></div>
-                    <div style={{color:'white', height:'7vh',fontSize:'13px', display:'flex', alignItems:'center'}}><div style={{backgroundColor:'grey', border:'gray solid', width:'100%', justifyContent:'center', display:'flex', padding:'1vh'}}>Brightness</div></div>
-                    <div style={{color:'white', height:'7vh',fontSize:'13px', display:'flex', alignItems:'center'}}><div style={{backgroundColor:'grey', border:'gray solid', width:'100%', justifyContent:'center', display:'flex', padding:'1vh'}}>Contrast</div></div>
-                    <div style={{color:'white', height:'7vh',fontSize:'13px', display:'flex', alignItems:'center'}}><div style={{backgroundColor:'grey', border:'gray solid', width:'100%', justifyContent:'center', display:'flex', padding:'1vh'}}>Denoise</div></div>
-                    <div style={{color:'white', height:'7vh',fontSize:'13px', display:'flex', alignItems:'center'}}><div style={{backgroundColor:'grey', border:'gray solid', width:'100%', justifyContent:'center', display:'flex', padding:'1vh'}}>Sharpness</div></div>
-                    <div style={{color:'white', height:'7vh',fontSize:'13px', display:'flex', alignItems:'center'}}><div style={{backgroundColor:'grey', border:'gray solid', width:'100%', justifyContent:'center', display:'flex', padding:'1vh'}}>AI Result</div></div>
+                <div
+                  style={{
+                    width: '300px',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    height: '100%',
+                  }}
+                >
+                  <div style={{ display: 'flex', flexDirection: 'column' }}>
+                    <div
+                      style={{
+                        color: 'white',
+                        height: '7vh',
+                        fontSize: '13px',
+                        display: 'flex',
+                        alignItems: 'center',
+                      }}
+                    >
+                      <div
+                        style={{
+                          backgroundColor: 'grey',
+                          border: 'gray solid',
+                          width: '100%',
+                          justifyContent: 'center',
+                          display: 'flex',
+                          padding: '1vh',
+                        }}
+                      >
+                        Marker (L,R)
+                      </div>
+                    </div>
+                    <div
+                      style={{
+                        color: 'white',
+                        height: '7vh',
+                        fontSize: '13px',
+                        display: 'flex',
+                        alignItems: 'center',
+                      }}
+                    >
+                      <div
+                        style={{
+                          backgroundColor: 'grey',
+                          border: 'gray solid',
+                          width: '100%',
+                          justifyContent: 'center',
+                          display: 'flex',
+                          padding: '1vh',
+                        }}
+                      >
+                        Histogram
+                      </div>
+                    </div>
+                    <div
+                      style={{
+                        color: 'white',
+                        height: '7vh',
+                        fontSize: '13px',
+                        display: 'flex',
+                        alignItems: 'center',
+                      }}
+                    >
+                      <div
+                        style={{
+                          backgroundColor: 'grey',
+                          border: 'gray solid',
+                          width: '100%',
+                          justifyContent: 'center',
+                          display: 'flex',
+                          padding: '1vh',
+                        }}
+                      >
+                        Brightness
+                      </div>
+                    </div>
+                    <div
+                      style={{
+                        color: 'white',
+                        height: '7vh',
+                        fontSize: '13px',
+                        display: 'flex',
+                        alignItems: 'center',
+                      }}
+                    >
+                      <div
+                        style={{
+                          backgroundColor: 'grey',
+                          border: 'gray solid',
+                          width: '100%',
+                          justifyContent: 'center',
+                          display: 'flex',
+                          padding: '1vh',
+                        }}
+                      >
+                        Contrast
+                      </div>
+                    </div>
+                    <div
+                      style={{
+                        color: 'white',
+                        height: '7vh',
+                        fontSize: '13px',
+                        display: 'flex',
+                        alignItems: 'center',
+                      }}
+                    >
+                      <div
+                        style={{
+                          backgroundColor: 'grey',
+                          border: 'gray solid',
+                          width: '100%',
+                          justifyContent: 'center',
+                          display: 'flex',
+                          padding: '1vh',
+                        }}
+                      >
+                        Denoise
+                      </div>
+                    </div>
+                    <div
+                      style={{
+                        color: 'white',
+                        height: '7vh',
+                        fontSize: '13px',
+                        display: 'flex',
+                        alignItems: 'center',
+                      }}
+                    >
+                      <div
+                        style={{
+                          backgroundColor: 'grey',
+                          border: 'gray solid',
+                          width: '100%',
+                          justifyContent: 'center',
+                          display: 'flex',
+                          padding: '1vh',
+                        }}
+                      >
+                        Sharpness
+                      </div>
+                    </div>
+                    <div
+                      style={{
+                        color: 'white',
+                        height: '7vh',
+                        fontSize: '13px',
+                        display: 'flex',
+                        alignItems: 'center',
+                      }}
+                    >
+                      <div
+                        style={{
+                          backgroundColor: 'grey',
+                          border: 'gray solid',
+                          width: '100%',
+                          justifyContent: 'center',
+                          display: 'flex',
+                          padding: '1vh',
+                        }}
+                      >
+                        AI Result
+                      </div>
+                    </div>
                   </div>
-                  <div >
+                  <div>
                     <ConnectedToolbarCol
                       isLeftSidePanelOpen={this.state.isLeftSidePanelOpen}
                       isRightSidePanelOpen={this.state.isRightSidePanelOpen}
@@ -303,7 +467,8 @@ class Viewer extends Component {
                           : ''
                       }
                       handleSidePanelChange={(side, selectedPanel) => {
-                        const sideClicked = side && side[0].toUpperCase() + side.slice(1);
+                        const sideClicked =
+                          side && side[0].toUpperCase() + side.slice(1);
                         const openKey = `is${sideClicked}SidePanelOpen`;
                         const selectedKey = `selected${sideClicked}SidePanel`;
                         const updatedState = Object.assign({}, this.state);
@@ -312,11 +477,14 @@ class Viewer extends Component {
                         const prevSelectedPanel = updatedState[selectedKey];
                         // RoundedButtonGroup returns `null` if selected button is clicked
                         const isSameSelectedPanel =
-                          prevSelectedPanel === selectedPanel || selectedPanel === null;
+                          prevSelectedPanel === selectedPanel ||
+                          selectedPanel === null;
 
-                        updatedState[selectedKey] = selectedPanel || prevSelectedPanel;
+                        updatedState[selectedKey] =
+                          selectedPanel || prevSelectedPanel;
 
-                        const isClosedOrShouldClose = !isOpen || isSameSelectedPanel;
+                        const isClosedOrShouldClose =
+                          !isOpen || isSameSelectedPanel;
                         if (isClosedOrShouldClose) {
                           updatedState[openKey] = !updatedState[openKey];
                         }
@@ -375,6 +543,10 @@ const _mapStudiesToThumbnails = function(studies) {
         const imageIndex = Math.floor(displaySet.images.length / 2);
 
         imageId = displaySet.images[imageIndex].getImageId();
+        console.log('imageId#$#$', imageId);
+        // this.setState({
+        //   imageId : imageId
+        // })
       } else {
         altImageText = displaySet.modality ? displaySet.modality : 'UN';
       }

@@ -22,6 +22,7 @@ const ViewportGrid = function(props) {
     children,
   } = props;
 
+  console.log("props", props);
   const rowSize = 100 / numRows;
   const colSize = 100 / numColumns;
 

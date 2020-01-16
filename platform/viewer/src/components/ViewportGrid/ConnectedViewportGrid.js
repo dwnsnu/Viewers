@@ -12,6 +12,8 @@ const mapStateToProps = state => {
       moduleDefinition.module;
   });
 
+  console.log("state", state)
+
   // TODO: Use something like state.plugins.defaultPlugin[MODULE_TYPES.VIEWPORT]
   let defaultPlugin;
   if (viewportModules.length) {

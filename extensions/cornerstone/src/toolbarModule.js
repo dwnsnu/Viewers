@@ -72,13 +72,21 @@ const definitions = [
     commandOptions: { toolName: 'Pan' },
   },
   {
-    id: 'Length',
-    label: 'Length',
-    icon: 'measure-temp',
+    id: 'Reset',
+    label: 'Reset',
+    icon: 'reset',
+    //
+    type: TOOLBAR_BUTTON_TYPES.COMMAND,
+    commandName: 'resetViewport',
+  },
+  {
+    id: 'ScaleOverlay',
+    label: 'Scale',
+    icon: 'square-o',
     //
     type: TOOLBAR_BUTTON_TYPES.SET_TOOL_ACTIVE,
     commandName: 'setToolActive',
-    commandOptions: { toolName: 'Length' },
+    commandOptions: { toolName: 'ScaleOverlay' },
   },
   {
     id: 'ArrowAnnotate',
@@ -90,23 +98,6 @@ const definitions = [
     commandOptions: { toolName: 'ArrowAnnotate' },
   },
   {
-    id: 'Angle',
-    label: 'Angle',
-    icon: 'angle-left',
-    //
-    type: TOOLBAR_BUTTON_TYPES.SET_TOOL_ACTIVE,
-    commandName: 'setToolActive',
-    commandOptions: { toolName: 'Angle' },
-  },
-  {
-    id: 'Reset',
-    label: 'Reset',
-    icon: 'reset',
-    //
-    type: TOOLBAR_BUTTON_TYPES.COMMAND,
-    commandName: 'resetViewport',
-  },
-  {
     id: 'Cine',
     label: 'CINE',
     icon: 'youtube',
@@ -115,6 +106,92 @@ const definitions = [
     options: {
       behavior: TOOLBAR_BUTTON_BEHAVIORS.CINE,
     },
+  },
+  {
+    id: 'TextMarker',
+    label: 'TextMarker',
+    icon: 'square-o',
+    //
+    type: TOOLBAR_BUTTON_TYPES.SET_TOOL_ACTIVE,
+    commandName: 'setToolActive',
+    commandOptions: { toolName: 'TextMarker' },
+  },
+  {
+    id: 'LRpoint',
+    label: 'LR point',
+    icon: 'square-o',
+    //
+    type: TOOLBAR_BUTTON_TYPES.SET_TOOL_ACTIVE,
+    commandName: 'setToolActive',
+    commandOptions: { toolName: 'LRpoint' },
+  },
+  {
+    id: 'Measurement',
+    label: 'Measurement',
+    icon: 'ellipse-circle',
+    buttons: [
+      {
+        id: 'Length',
+        label: 'Length',
+        icon: 'measure-temp',
+       //
+        type: TOOLBAR_BUTTON_TYPES.SET_TOOL_ACTIVE,
+        commandName: 'setToolActive',
+        commandOptions: { toolName: 'Length' },
+      },
+      {
+        id: 'Angle',
+        label: 'Angle',
+        icon: 'angle-left',
+        //
+        type: TOOLBAR_BUTTON_TYPES.SET_TOOL_ACTIVE,
+        commandName: 'setToolActive',
+        commandOptions: { toolName: 'Angle' },
+      },
+    ],
+  },
+  {
+    id: 'Annotation Tool Kit',
+    label: 'Annotation Tool Kit',
+    icon: 'ellipse-circle',
+    buttons: [
+      {
+        id: 'Point',
+        label: 'Point',
+        icon: 'dot-circle',
+        //
+        type: TOOLBAR_BUTTON_TYPES.SET_TOOL_ACTIVE,
+        commandName: 'setToolActive',
+        commandOptions: { toolName: 'Point' },
+      },
+      {
+        id: 'Line',
+        label: 'Line',
+        icon: 'dot-circle',
+        //
+        type: TOOLBAR_BUTTON_TYPES.SET_TOOL_ACTIVE,
+        commandName: 'setToolActive',
+        commandOptions: { toolName: 'Line' },
+      },
+      {
+        id: 'Polyline',
+        label: 'Polyline',
+        icon: 'dot-circle',
+        //
+        type: TOOLBAR_BUTTON_TYPES.SET_TOOL_ACTIVE,
+        commandName: 'setToolActive',
+        commandOptions: { toolName: 'Polyline' },
+      },
+      {
+        id: 'Polygon',
+        label: 'Polygon',
+        icon: 'dot-circle',
+        //
+        type: TOOLBAR_BUTTON_TYPES.SET_TOOL_ACTIVE,
+        commandName: 'setToolActive',
+        commandOptions: { toolName: 'Polygon' },
+      },
+    ],
   },
   {
     id: 'More',

@@ -9,6 +9,13 @@ export function initCornerstoneToolsAliases() {
   cy.get('.ToolbarRow > :nth-child(8)').as('angleBtn');
   cy.get('.ToolbarRow > :nth-child(9)').as('resetBtn');
   cy.get('.ToolbarRow > :nth-child(10)').as('cineBtn');
+  cy.get('.ToolbarRow > :nth-child(11)').as('pointBtn');
+  cy.get('.ToolbarRow > :nth-child(12)').as('lineBtn');
+  cy.get('.ToolbarRow > :nth-child(13)').as('polylineBtn');
+  cy.get('.ToolbarRow > :nth-child(14)').as('polygonBtn');
+  cy.get('.ToolbarRow > :nth-child(15)').as('textmarkerBtn');
+  cy.get('.ToolbarRow > :nth-child(16)').as('lrpointBtn');
+  cy.get('.ToolbarRow > :nth-child(17)').as('scaleoverlayBtn');
   cy.get('.expandableToolMenu').as('moreBtn');
   cy.get('.btn-group > .toolbar-button').as('layoutBtn');
 }

@@ -239,6 +239,17 @@ Cypress.Commands.add('imageZoomIn', () => {
     .trigger('mouseup');
 });
 
+Cypress.Commands.add('imageScaleOverlayIn', () => {
+  cy.initCornerstoneToolsAliases();
+  cy.get('@scaleoverlayBtn').click();
+
+  //drags the mouse inside the viewport to be able to interact with series
+  cy.get('@viewport')
+    .trigger('mousedown', 'top', { which: 1 })
+    .trigger('mousemove', 'center', { which: 1 })
+    .trigger('mouseup');
+});
+
 Cypress.Commands.add('imageContrast', () => {
   cy.initCornerstoneToolsAliases();
   cy.get('@levelsBtn').click();
@@ -297,6 +308,66 @@ Cypress.Commands.add(
     cy.initCornerstoneToolsAliases();
     cy.get('@angleBtn').click();
     cy.addAngle('@viewport', initPos, midPos, finalPos);
+  }
+);
+
+//Add measurements in the viewport
+Cypress.Commands.add(
+  'addPointMeasurement',
+  (clickPoint = [180, 390]) => {
+    cy.initCornerstoneToolsAliases();
+    cy.get('@pointBtn').click();
+    cy.addPoint('@viewport', clickPoint);
+  }
+);
+
+//Add measurements in the viewport
+Cypress.Commands.add(
+  'addLineMeasurement',
+  (clickPoint = [180, 390]) => {
+    cy.initCornerstoneToolsAliases();
+    cy.get('@lineBtn').click();
+    cy.addLine('@viewport', clickPoint);
+  }
+);
+
+//Add measurements in the viewport
+Cypress.Commands.add(
+  'addPolylineMeasurement',
+  (clickPoint = [180, 390]) => {
+    cy.initCornerstoneToolsAliases();
+    cy.get('@polylineBtn').click();
+    cy.addPolyline('@viewport', clickPoint);
+  }
+);
+
+//Add measurements in the viewport
+Cypress.Commands.add(
+  'addPolygonMeasurement',
+  (clickPoint = [180, 390]) => {
+    cy.initCornerstoneToolsAliases();
+    cy.get('@polygonBtn').click();
+    cy.addPolygon('@viewport', clickPoint);
+  }
+);
+
+//Add measurements in the viewport
+Cypress.Commands.add(
+  'addTextMarkerMeasurement',
+  (clickPoint = [180, 390]) => {
+    cy.initCornerstoneToolsAliases();
+    cy.get('@textmarkerBtn').click();
+    cy.addTextMarker('@viewport', clickPoint);
+  }
+);
+
+//Add measurements in the viewport
+Cypress.Commands.add(
+  'addLRpointMeasurement',
+  (clickPoint = [180, 390]) => {
+    cy.initCornerstoneToolsAliases();
+    cy.get('@lrpointBtn').click();
+    cy.addLRpoint('@viewport', clickPoint);
   }
 );
 

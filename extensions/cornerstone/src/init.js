@@ -53,6 +53,7 @@ export default function init({ servicesManager, configuration = {} }) {
   const {
     PanTool,
     ZoomTool,
+    ScaleOverlayTool,
     WwwcTool,
     MagnifyTool,
     StackScrollTool,
@@ -76,6 +77,7 @@ export default function init({ servicesManager, configuration = {} }) {
   const tools = [
     PanTool,
     ZoomTool,
+    ScaleOverlayTool,
     WwwcTool,
     MagnifyTool,
     StackScrollTool,

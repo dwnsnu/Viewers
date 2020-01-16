@@ -5,10 +5,13 @@ import OHIF from "@ohif/core";
 const { setTimepoints, setMeasurements } = OHIF.redux.actions;
 
 const mapStateToProps = (state, ownProps) => {
+  console.log("state", state);
   return {
     viewports: state.viewports.viewportSpecificData,
     activeViewportIndex: state.viewports.activeViewportIndex
   };
+
+  
 };
 
 const mapDispatchToProps = dispatch => {
