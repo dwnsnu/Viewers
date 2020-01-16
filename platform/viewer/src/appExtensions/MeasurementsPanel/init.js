@@ -56,6 +56,8 @@ export default function init({ servicesManager, configuration = {} }) {
   csTools.removeTool('Polygon');
   csTools.removeTool('TextMarker');
   csTools.removeTool('LRpoint');
+  csTools.removeTool('Lpoint');
+  csTools.removeTool('Rpoint');
 
   // Re-add each tool w/ our custom configuration
   csTools.addTool(csTools.BidirectionalTool, {
@@ -64,6 +66,11 @@ export default function init({ servicesManager, configuration = {} }) {
     },
   });
   csTools.addTool(csTools.LengthTool, {
+    configuration: {
+      getMeasurementLocationCallback: toolLabellingFlowCallback,
+    },
+  });
+  csTools.addTool(csTools.LineTool, {
     configuration: {
       getMeasurementLocationCallback: toolLabellingFlowCallback,
     },
@@ -103,11 +110,6 @@ export default function init({ servicesManager, configuration = {} }) {
       getMeasurementLocationCallback: toolLabellingFlowCallback,
     },
   });
-  csTools.addTool(csTools.LineTool, {
-    configuration: {
-      getMeasurementLocationCallback: toolLabellingFlowCallback,
-    },
-  });
   csTools.addTool(csTools.PolylineTool, {
     configuration: {
       getMeasurementLocationCallback: toolLabellingFlowCallback,
@@ -130,6 +132,22 @@ export default function init({ servicesManager, configuration = {} }) {
     configuration: {
         markers: ['L','R'],
         current: 'L',
+        ascending: true,
+        loop: true,
+    },
+  });    
+  csTools.addTool(csTools.LpointTool, {
+    configuration: {
+        markers: ['L'],
+        current: 'L',
+        ascending: true,
+        loop: true,
+    },
+  });    
+  csTools.addTool(csTools.RpointTool, {
+    configuration: {
+        markers: ['R'],
+        current: 'R',
         ascending: true,
         loop: true,
     },

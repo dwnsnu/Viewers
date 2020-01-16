@@ -50,7 +50,6 @@ const definitions = [
     icon: 'search-plus',
     //
     type: TOOLBAR_BUTTON_TYPES.SET_TOOL_ACTIVE,
-    commandName: 'setToolActive',
     commandOptions: { toolName: 'Zoom' },
   },
   {
@@ -61,6 +60,14 @@ const definitions = [
     type: TOOLBAR_BUTTON_TYPES.SET_TOOL_ACTIVE,
     commandName: 'setToolActive',
     commandOptions: { toolName: 'Wwwc' },
+  },
+  {
+    id: 'Sharpness',
+    label: 'Sharpness',
+    icon: 'level',
+    //
+    type: TOOLBAR_BUTTON_TYPES.COMMAND,
+    commandName: 'changeSharpness',
   },
   {
     id: 'Pan',
@@ -84,9 +91,8 @@ const definitions = [
     label: 'Scale',
     icon: 'square-o',
     //
-    type: TOOLBAR_BUTTON_TYPES.SET_TOOL_ACTIVE,
-    commandName: 'setToolActive',
-    commandOptions: { toolName: 'ScaleOverlay' },
+    type: TOOLBAR_BUTTON_TYPES.COMMAND,
+    commandName: 'setRuler',
   },
   {
     id: 'ArrowAnnotate',
@@ -109,7 +115,7 @@ const definitions = [
   },
   {
     id: 'TextMarker',
-    label: 'TextMarker',
+    label: 'Text',
     icon: 'square-o',
     //
     type: TOOLBAR_BUTTON_TYPES.SET_TOOL_ACTIVE,
@@ -118,12 +124,28 @@ const definitions = [
   },
   {
     id: 'LRpoint',
-    label: 'LR point',
-    icon: 'square-o',
-    //
-    type: TOOLBAR_BUTTON_TYPES.SET_TOOL_ACTIVE,
-    commandName: 'setToolActive',
-    commandOptions: { toolName: 'LRpoint' },
+    label: 'L,R marker',
+    icon: 'ellipse-circle',
+    buttons: [
+    {
+      id: 'Lpoint',
+      label: 'L',
+      icon: 'square-o',
+      //
+      type: TOOLBAR_BUTTON_TYPES.SET_TOOL_ACTIVE,
+      commandName: 'setToolActive',
+      commandOptions: { toolName: 'Lpoint' },
+    },
+    {
+      id: 'Rpoint',
+      label: 'R',
+      icon: 'square-o',
+      //
+      type: TOOLBAR_BUTTON_TYPES.SET_TOOL_ACTIVE,
+      commandName: 'setToolActive',
+      commandOptions: { toolName: 'Rpoint' },
+    },
+    ],
   },
   {
     id: 'Measurement',
@@ -191,40 +213,6 @@ const definitions = [
         commandName: 'setToolActive',
         commandOptions: { toolName: 'Polygon' },
       },
-    ],
-  },
-  {
-    id: 'More',
-    label: 'More',
-    icon: 'ellipse-circle',
-    buttons: [
-      {
-        id: 'Magnify',
-        label: 'Magnify',
-        icon: 'circle',
-        //
-        type: TOOLBAR_BUTTON_TYPES.SET_TOOL_ACTIVE,
-        commandName: 'setToolActive',
-        commandOptions: { toolName: 'Magnify' },
-      },
-      {
-        id: 'WwwcRegion',
-        label: 'ROI Window',
-        icon: 'stop',
-        //
-        type: TOOLBAR_BUTTON_TYPES.SET_TOOL_ACTIVE,
-        commandName: 'setToolActive',
-        commandOptions: { toolName: 'WwwcRegion' },
-      },
-      {
-        id: 'DragProbe',
-        label: 'Probe',
-        icon: 'dot-circle',
-        //
-        type: TOOLBAR_BUTTON_TYPES.SET_TOOL_ACTIVE,
-        commandName: 'setToolActive',
-        commandOptions: { toolName: 'DragProbe' },
-      },
       {
         id: 'EllipticalRoi',
         label: 'Ellipse',
@@ -242,6 +230,49 @@ const definitions = [
         type: TOOLBAR_BUTTON_TYPES.SET_TOOL_ACTIVE,
         commandName: 'setToolActive',
         commandOptions: { toolName: 'RectangleRoi' },
+      },
+       {
+         id: 'Bidirectional',
+         label: 'Bidirectional',
+         icon: 'measure-target',
+         //
+         type: TOOLBAR_BUTTON_TYPES.SET_TOOL_ACTIVE,
+         commandName: 'setToolActive',
+         commandOptions: { toolName: 'Bidirectional' },
+       },
+    ],
+  },
+  {
+    Id: 'More',
+    label: 'More',
+    icon: 'ellipse-circle',
+    buttons: [
+      {
+        id: 'Magnify',
+        label: 'Magnify',
+        icon: 'circle',
+        //
+        type: TOOLBAR_BUTTON_TYPES.SET_TOOL_ACTIVE,
+        commandName: 'setToolActive',
+        commandOptions: { toolName: 'Magnify' },
+      },
+      // {
+      //   id: 'WwwcRegion',
+      //   label: 'ROI Window',
+      //   icon: 'stop',
+      //   //
+      //   type: TOOLBAR_BUTTON_TYPES.SET_TOOL_ACTIVE,
+      //   commandName: 'setToolActive',
+      //   commandOptions: { toolName: 'WwwcRegion' },
+      // },
+      {
+        id: 'DragProbe',
+        label: 'Probe',
+        icon: 'dot-circle',
+        //
+        type: TOOLBAR_BUTTON_TYPES.SET_TOOL_ACTIVE,
+        commandName: 'setToolActive',
+        commandOptions: { toolName: 'DragProbe' },
       },
       {
         id: 'Invert',
@@ -282,15 +313,6 @@ const definitions = [
         //
         type: TOOLBAR_BUTTON_TYPES.COMMAND,
         commandName: 'clearAnnotations',
-      },
-      {
-        id: 'Bidirectional',
-        label: 'Bidirectional',
-        icon: 'measure-target',
-        //
-        type: TOOLBAR_BUTTON_TYPES.SET_TOOL_ACTIVE,
-        commandName: 'setToolActive',
-        commandOptions: { toolName: 'Bidirectional' },
       },
       {
         id: 'Eraser',

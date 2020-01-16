@@ -375,7 +375,7 @@ class Viewer extends Component {
                         alignItems: 'center',
                       }}
                     >
-                      <div
+                      {/* <div
                         style={{
                           backgroundColor: 'grey',
                           border: 'gray solid',
@@ -386,7 +386,7 @@ class Viewer extends Component {
                         }}
                       >
                         Sharpness
-                      </div>
+                      </div> */}
                     </div>
                     {/* <div style={{ color: 'white', height: '7vh', fontSize: '13px', display: 'flex', alignItems: 'center' }}><div style={{ backgroundColor: 'grey', border: 'gray solid', width: '100%', justifyContent: 'center', display: 'flex', padding: '1vh' }}>AI Result</div></div> */}
                   </div>

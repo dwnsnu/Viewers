@@ -4,6 +4,37 @@ import OHIF from '@ohif/core';
 const scroll = cornerstoneTools.import('util/scroll');
 
 const actions = {
+    setRuler: ({ viewports, rotation }) => {
+    const enabledElement = _getActiveViewportEnabledElement(
+      viewports.viewportSpecificData,
+      viewports.activeViewportIndex
+    );
+      if(viewports.flagScaleOverlay == true){
+          cornerstoneTools.setToolPassive('ScaleOverlay')
+          viewports.flagScaleOverlay = false;
+      }else{
+          cornerstoneTools.setToolActive('ScaleOverlay')
+          viewports.flagScaleOverlay = true;
+      }
+    },
+    changeSharpness: ({ viewports, rotation }) => {
+    const enabledElement = _getActiveViewportEnabledElement(
+      viewports.viewportSpecificData,
+      viewports.activeViewportIndex
+    );
+
+    if (enabledElement) {
+      let viewport = cornerstone.getViewport(enabledElement);
+        console.log("temptempview",viewport)
+        console.log("temptemptemp",viewport.pixelReplication)
+        if (viewport.pixelReplication == true){
+            viewport.pixelReplication = false;
+        }else{
+            viewport.pixelReplication = true;
+        }
+      cornerstone.setViewport(enabledElement, viewport);
+    }
+    },
   rotateViewport: ({ viewports, rotation }) => {
     const enabledElement = _getActiveViewportEnabledElement(
       viewports.viewportSpecificData,
@@ -101,6 +132,7 @@ const actions = {
     }
 
     const enabledElement = cornerstone.getEnabledElement(element);
+      console.log('temp_elemet',enabledElement)
     if (!enabledElement || !enabledElement.image) {
       return;
     }
@@ -116,17 +148,22 @@ const actions = {
     }
 
     const imageIdToolState = toolState[enabledElement.image.imageId];
+      console.log('temp_imageId',imageIdToolState)
 
     const measurementsToRemove = [];
 
     Object.keys(imageIdToolState).forEach(toolType => {
       const { data } = imageIdToolState[toolType];
+     console.log('temp_toolType',toolType)
+      console.log('temp_data',data)
+      console.log('temp_data0',data[0])
 
       data.forEach(measurementData => {
         const { _id, lesionNamingNumber, measurementNumber } = measurementData;
         if (!_id) {
           return;
         }
+//      console.log('temp_measurementData',measurementData)
 
         measurementsToRemove.push({
           toolType,
@@ -136,7 +173,6 @@ const actions = {
         });
       });
     });
-
     measurementsToRemove.forEach(measurementData => {
       OHIF.measurements.MeasurementHandlers.onRemoved({
         detail: {
@@ -204,6 +240,16 @@ const definitions = {
     commandFn: actions.scaleViewport,
     storeContexts: ['viewports'],
     options: { direction: 0 },
+  },
+  setRuler: {
+    commandFn: actions.setRuler,
+    storeContexts: ['viewports'],
+    options: {},
+  },
+  changeSharpness: {
+    commandFn: actions.changeSharpness,
+    storeContexts: ['viewports'],
+    options: {},
   },
   resetViewport: {
     commandFn: actions.resetViewport,

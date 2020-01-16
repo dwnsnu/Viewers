@@ -9,7 +9,6 @@ import './ToolContextMenu.css';
 
 const toolTypes = [
   'Angle',
-  'Bidirectional',
   'Length',
   'FreehandMouse',
   'EllipticalRoi',
@@ -21,6 +20,9 @@ const toolTypes = [
   'Polygon',
   'TextMarker',
   'LRpoint',
+  'Lpoint',
+  'Rpoint',
+  'Bidirectional'
 ];
 
 let defaultDropdownItems = [
