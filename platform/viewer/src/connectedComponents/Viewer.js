@@ -6,20 +6,22 @@ import { MODULE_TYPES } from '@ohif/core';
 import OHIF from '@ohif/core';
 import moment from 'moment';
 import ConnectedHeader from './ConnectedHeader.js';
-import ConnectedToolbarRow from './ConnectedToolbarRow.js';
+// import ConnectedToolbarRow from './ConnectedToolbarRow.js';
 import ConnectedToolbarCol from './ConnectedToolbarCol.js';
 import ConnectedLabellingOverlay from './ConnectedLabellingOverlay';
 import ConnectedStudyBrowser from './ConnectedStudyBrowser.js';
 import ConnectedViewerMain from './ConnectedViewerMain.js';
 import SidePanel from './../components/SidePanel.js';
 import { extensionManager } from './../App.js';
-
+import cornerstone from 'cornerstone-core';
 // Contexts
 import WhiteLabellingContext from '../context/WhiteLabellingContext.js';
 import UserManagerContext from '../context/UserManagerContext';
 
+//histogram
+import Histogram from './Histogram';
+
 import './Viewer.css';
-// import Histogram from './Histogram.js';
 /**
  * Inits OHIF Hanging Protocol's onReady.
  * It waits for OHIF Hanging Protocol to be ready to instantiate the ProtocolEngine
@@ -55,8 +57,8 @@ OHIF.viewer.functionList = {
     resetViewport: viewportUtils.resetViewport,
     invert: viewportUtils.invert
 };*/
+// const imageId = null;
 
-// var imageId = null
 // console.log("imageId", imageId)
 class Viewer extends Component {
   static propTypes = {
@@ -69,7 +71,7 @@ class Viewer extends Component {
     // window.store.getState().viewports.activeViewportIndex
     activeViewportIndex: PropTypes.number.isRequired,
   };
-
+  
   constructor(props) {
     super(props);
     OHIF.measurements.MeasurementApi.setConfiguration({
@@ -78,7 +80,7 @@ class Viewer extends Component {
         store: this.storeMeasurements,
       },
     });
-
+    
     OHIF.measurements.TimepointApi.setConfiguration({
       dataExchange: {
         retrieve: this.retrieveTimepoints,
@@ -89,7 +91,9 @@ class Viewer extends Component {
       },
     });
   }
-
+  
+  
+  
   state = {
     isLeftSidePanelOpen: false,
     isRightSidePanelOpen: true,
@@ -97,24 +101,25 @@ class Viewer extends Component {
     selectedLeftSidePanel: 'studies', // TODO: Don't hardcode this
     thumbnails: [],
     isDicom: false,
-    // imageId : null
+    loadImage: null,
+    histogramvisible: false
   };
-
+  
   retrieveMeasurements = (patientId, timepointIds) => {
     OHIF.log.info('retrieveMeasurements');
     // TODO: Retrieve the measurements from the latest available SR
     return Promise.resolve();
   };
-
+  
   storeMeasurements = (measurementData, timepointIds) => {
     OHIF.log.info('storeMeasurements');
     // TODO: Store the measurements into a new SR sent to the active server
     return Promise.resolve();
   };
-
+  
   retrieveTimepoints = filter => {
     OHIF.log.info('retrieveTimepoints');
-
+    
     // Get the earliest and latest study date
     let earliestDate = new Date().toISOString();
     let latestDate = new Date().toISOString();
@@ -130,7 +135,7 @@ class Viewer extends Component {
         }
       });
     }
-
+    
     // Return a generic timepoint
     return Promise.resolve([
       {
@@ -144,88 +149,123 @@ class Viewer extends Component {
       },
     ]);
   };
-
+  
   storeTimepoints = timepointData => {
     OHIF.log.info('storeTimepoints');
     return Promise.resolve();
   };
-
+  
   updateTimepoint = (timepointData, query) => {
     OHIF.log.info('updateTimepoint');
     return Promise.resolve();
   };
-
+  
   removeTimepoint = timepointId => {
     OHIF.log.info('removeTimepoint');
     return Promise.resolve();
   };
-
+  
   disassociateStudy = (timepointIds, studyInstanceUid) => {
     OHIF.log.info('disassociateStudy');
     return Promise.resolve();
   };
-
+  
   onTimepointsUpdated = timepoints => {
     if (this.props.onTimepointsUpdated) {
       this.props.onTimepointsUpdated(timepoints);
     }
   };
-
+  
   onMeasurementsUpdated = measurements => {
     if (this.props.onMeasurementsUpdated) {
       this.props.onMeasurementsUpdated(measurements);
     }
   };
-
+  
   componentDidMount() {
     const { studies } = this.props;
+    
     const { TimepointApi, MeasurementApi } = OHIF.measurements;
     const currentTimepointId = 'TimepointId';
-
+    
     const timepointApi = new TimepointApi(currentTimepointId, {
       onTimepointsUpdated: this.onTimepointsUpdated,
     });
-
+    
     const measurementApi = new MeasurementApi(timepointApi, {
       onMeasurementsUpdated: this.onMeasurementsUpdated,
     });
-
+    
     this.currentTimepointId = currentTimepointId;
     this.timepointApi = timepointApi;
     this.measurementApi = measurementApi;
-
+    
     if (studies) {
       const patientId = studies[0] && studies[0].patientId;
-
+      
       timepointApi.retrieveTimepoints({ patientId });
       measurementApi.retrieveMeasurements(patientId, [currentTimepointId]);
-
+      
       this.setState({
         thumbnails: _mapStudiesToThumbnails(studies),
       });
     }
+    
+    // this.loadImage();
+    
   }
-
+  
   componentDidUpdate(prevProps) {
     if (this.props.studies !== prevProps.studies) {
       const { studies } = this.props;
       const patientId = studies[0] && studies[0].patientId;
       const currentTimepointId = this.currentTimepointId;
-
+      
       this.timepointApi.retrieveTimepoints({ patientId });
       this.measurementApi.retrieveMeasurements(patientId, [currentTimepointId]);
-
+      
       this.setState({
         thumbnails: _mapStudiesToThumbnails(studies),
       });
-      console.log('thumbnails', this.state.thumbnails);
     }
+    const aaa = this.state.thumbnails[0];
+    // console.log("this.state.thumbnails[0]", this.state.thumbnails[0]);
   }
-
+  
+  loadImage = () => {
+    
+    const aaa = this.state.thumbnails[0];
+    
+    
+    cornerstone.loadImage(aaa.thumbnails[0].imageId).then(image => {
+      
+      this.image = image;
+      
+      this.setState({
+        loadImage: this.image,
+        histogramvisible: !this.state.histogramvisible
+      })
+    }, (e) => {
+      console.log('error', e)
+      this.setState({ errorOnOpenImage: "This is not a valid JPG or PNG file." })
+    })
+    
+    // console.log("this.state.loadImage", this.state.loadImage)
+  }
+  
+  
   render() {
+    
+    // console.log("this.state.thumbnails-render", this.state.thumbnails);
+    
+    console.log("render####");
+    
+    // console.log("render-this.props", this.props);
     let VisiblePanelLeft, VisiblePanelRight;
     const panelExtensions = extensionManager.modules[MODULE_TYPES.PANEL];
-
+    
+    const aaa = this.state.thumbnails[0];
+    
     panelExtensions.forEach(panelExt => {
       panelExt.module.components.forEach(comp => {
         if (comp.id === this.state.selectedRightSidePanel) {
@@ -235,7 +275,7 @@ class Viewer extends Component {
         }
       });
     });
-
+    
     return (
       <>
         {/* HEADER */}
@@ -250,11 +290,11 @@ class Viewer extends Component {
             </UserManagerContext.Consumer>
           )}
         </WhiteLabellingContext.Consumer>
-
+        
         {/* VIEWPORTS + SIDEPANELS */}
         <div className="FlexboxLayout">
           {/*/!* LEFT *!/*/}
-          <div>
+          <div >
             <SidePanel from="left" isOpen={this.state.isLeftSidePanelOpen}>
               {VisiblePanelLeft ? (
                 <VisiblePanelLeft
@@ -269,18 +309,17 @@ class Viewer extends Component {
               )}
             </SidePanel>
           </div>
-
+          
           {/* MAIN */}
           <div className={classNames('main-content')}>
+            
+            {this.state.histogramvisible === true ? <Histogram loadImage={this.state.loadImage} isDicom={this.state.isDicom} /> : null}
             <ConnectedViewerMain studies={this.props.studies} />
+          
           </div>
-
-          {/* {this.state.loadImage && <Histogram loadImage={this.state.loadImage} isDicom={this.state.isDicom} />} */}
-          {/* {console.log(".this.state.thumbnails", this.state.thumbnails[0] !==undefined ? this.state.thumbnails[0] : '')} */}
-          {/* {<Histogram loadImage={this.state.thumbnails[0].} isDicom={this.state.isDicom} />}       */}
+          
           {/* RIGHT */}
-          {/* {console.log("viewer-this.props", this.props)} */}
-          <div>
+          <div >
             <SidePanel from="right" isOpen={this.state.isRightSidePanelOpen}>
               {VisiblePanelRight ? (
                 <VisiblePanelRight
@@ -288,171 +327,21 @@ class Viewer extends Component {
                   activeIndex={this.props.activeViewportIndex}
                 />
               ) : (
-                <div
-                  style={{
-                    width: '300px',
-                    display: 'flex',
-                    justifyContent: 'center',
-                    height: '100%',
-                  }}
-                >
+                <div style={{ width: '300px', display: 'flex', justifyContent: 'center', height: '100%' }}>
                   <div style={{ display: 'flex', flexDirection: 'column' }}>
-                    <div
-                      style={{
-                        color: 'white',
-                        height: '7vh',
-                        fontSize: '13px',
-                        display: 'flex',
-                        alignItems: 'center',
-                      }}
-                    >
-                      <div
-                        style={{
-                          backgroundColor: 'grey',
-                          border: 'gray solid',
-                          width: '100%',
-                          justifyContent: 'center',
-                          display: 'flex',
-                          padding: '1vh',
-                        }}
-                      >
-                        Marker (L,R)
-                      </div>
-                    </div>
-                    <div
-                      style={{
-                        color: 'white',
-                        height: '7vh',
-                        fontSize: '13px',
-                        display: 'flex',
-                        alignItems: 'center',
-                      }}
-                    >
-                      <div
-                        style={{
-                          backgroundColor: 'grey',
-                          border: 'gray solid',
-                          width: '100%',
-                          justifyContent: 'center',
-                          display: 'flex',
-                          padding: '1vh',
-                        }}
-                      >
-                        Histogram
-                      </div>
-                    </div>
-                    <div
-                      style={{
-                        color: 'white',
-                        height: '7vh',
-                        fontSize: '13px',
-                        display: 'flex',
-                        alignItems: 'center',
-                      }}
-                    >
-                      <div
-                        style={{
-                          backgroundColor: 'grey',
-                          border: 'gray solid',
-                          width: '100%',
-                          justifyContent: 'center',
-                          display: 'flex',
-                          padding: '1vh',
-                        }}
-                      >
-                        Brightness
-                      </div>
-                    </div>
-                    <div
-                      style={{
-                        color: 'white',
-                        height: '7vh',
-                        fontSize: '13px',
-                        display: 'flex',
-                        alignItems: 'center',
-                      }}
-                    >
-                      <div
-                        style={{
-                          backgroundColor: 'grey',
-                          border: 'gray solid',
-                          width: '100%',
-                          justifyContent: 'center',
-                          display: 'flex',
-                          padding: '1vh',
-                        }}
-                      >
-                        Contrast
-                      </div>
-                    </div>
-                    <div
-                      style={{
-                        color: 'white',
-                        height: '7vh',
-                        fontSize: '13px',
-                        display: 'flex',
-                        alignItems: 'center',
-                      }}
-                    >
-                      <div
-                        style={{
-                          backgroundColor: 'grey',
-                          border: 'gray solid',
-                          width: '100%',
-                          justifyContent: 'center',
-                          display: 'flex',
-                          padding: '1vh',
-                        }}
-                      >
-                        Denoise
-                      </div>
-                    </div>
-                    <div
-                      style={{
-                        color: 'white',
-                        height: '7vh',
-                        fontSize: '13px',
-                        display: 'flex',
-                        alignItems: 'center',
-                      }}
-                    >
-                      <div
-                        style={{
-                          backgroundColor: 'grey',
-                          border: 'gray solid',
-                          width: '100%',
-                          justifyContent: 'center',
-                          display: 'flex',
-                          padding: '1vh',
-                        }}
-                      >
-                        Sharpness
-                      </div>
-                    </div>
-                    <div
-                      style={{
-                        color: 'white',
-                        height: '7vh',
-                        fontSize: '13px',
-                        display: 'flex',
-                        alignItems: 'center',
-                      }}
-                    >
-                      <div
-                        style={{
-                          backgroundColor: 'grey',
-                          border: 'gray solid',
-                          width: '100%',
-                          justifyContent: 'center',
-                          display: 'flex',
-                          padding: '1vh',
-                        }}
-                      >
-                        AI Result
-                      </div>
-                    </div>
+                    {/* <div style={{ color: 'white', height: '7vh', fontSize: '13px', display: 'flex', alignItems: 'center' }}><div style={{ backgroundColor: 'grey', border: 'gray solid', width: '100%', justifyContent: 'center', display: 'flex', padding: '1vh' }}>Marker (L,R)</div></div> */}
+                    <div onClick={() => {
+                      this.loadImage();
+                    }}
+                    
+                         style={{ color: 'white', cursur: 'pointer', height: '7vh', fontSize: '13px', display: 'flex', alignItems: 'center' }}><div style={{ backgroundColor: 'grey', border: 'gray solid', width: '100%', justifyContent: 'center', display: 'flex', padding: '1vh' }}>Histogram</div></div>
+                    {/* <div style={{ color: 'white', height: '7vh', fontSize: '13px', display: 'flex', alignItems: 'center' }}><div style={{ backgroundColor: 'grey', border: 'gray solid', width: '100%', justifyContent: 'center', display: 'flex', padding: '1vh' }}>Brightness</div></div> */}
+                    {/* <div style={{ color: 'white', height: '7vh', fontSize: '13px', display: 'flex', alignItems: 'center' }}><div style={{ backgroundColor: 'grey', border: 'gray solid', width: '100%', justifyContent: 'center', display: 'flex', padding: '1vh' }}>Contrast</div></div> */}
+                    {/* <div style={{ color: 'white', height: '7vh', fontSize: '13px', display: 'flex', alignItems: 'center' }}><div style={{ backgroundColor: 'grey', border: 'gray solid', width: '100%', justifyContent: 'center', display: 'flex', padding: '1vh' }}>Denoise</div></div> */}
+                    <div style={{ color: 'white', height: '7vh', fontSize: '13px', display: 'flex', alignItems: 'center' }}><div style={{ backgroundColor: 'grey', border: 'gray solid', width: '100%', justifyContent: 'center', display: 'flex', padding: '1vh' }}>Sharpness</div></div>
+                    {/* <div style={{ color: 'white', height: '7vh', fontSize: '13px', display: 'flex', alignItems: 'center' }}><div style={{ backgroundColor: 'grey', border: 'gray solid', width: '100%', justifyContent: 'center', display: 'flex', padding: '1vh' }}>AI Result</div></div> */}
                   </div>
-                  <div>
+                  <div >
                     <ConnectedToolbarCol
                       isLeftSidePanelOpen={this.state.isLeftSidePanelOpen}
                       isRightSidePanelOpen={this.state.isRightSidePanelOpen}
@@ -467,28 +356,24 @@ class Viewer extends Component {
                           : ''
                       }
                       handleSidePanelChange={(side, selectedPanel) => {
-                        const sideClicked =
-                          side && side[0].toUpperCase() + side.slice(1);
+                        const sideClicked = side && side[0].toUpperCase() + side.slice(1);
                         const openKey = `is${sideClicked}SidePanelOpen`;
                         const selectedKey = `selected${sideClicked}SidePanel`;
                         const updatedState = Object.assign({}, this.state);
-
+                        
                         const isOpen = updatedState[openKey];
                         const prevSelectedPanel = updatedState[selectedKey];
                         // RoundedButtonGroup returns `null` if selected button is clicked
                         const isSameSelectedPanel =
-                          prevSelectedPanel === selectedPanel ||
-                          selectedPanel === null;
-
-                        updatedState[selectedKey] =
-                          selectedPanel || prevSelectedPanel;
-
-                        const isClosedOrShouldClose =
-                          !isOpen || isSameSelectedPanel;
+                          prevSelectedPanel === selectedPanel || selectedPanel === null;
+                        
+                        updatedState[selectedKey] = selectedPanel || prevSelectedPanel;
+                        
+                        const isClosedOrShouldClose = !isOpen || isSameSelectedPanel;
                         if (isClosedOrShouldClose) {
                           updatedState[openKey] = !updatedState[openKey];
                         }
-
+                        
                         this.setState(updatedState);
                       }}
                       studies={this.props.studies}
@@ -518,10 +403,12 @@ export default Viewer;
  * @param {Study[]} studies
  * @param {DisplaySet[]} studies[].displaySets
  */
-const _mapStudiesToThumbnails = function(studies) {
+const _mapStudiesToThumbnails = function (studies) {
   return studies.map(study => {
     const { studyInstanceUid } = study;
-
+    
+    // console.log("study", study)
+    
     const thumbnails = study.displaySets.map(displaySet => {
       const {
         displaySetInstanceUid,
@@ -530,10 +417,10 @@ const _mapStudiesToThumbnails = function(studies) {
         instanceNumber,
         numImageFrames,
       } = displaySet;
-
+      
       let imageId;
       let altImageText;
-
+      
       if (displaySet.modality && displaySet.modality === 'SEG') {
         // TODO: We want to replace this with a thumbnail showing
         // the segmentation map on the image, but this is easier
@@ -541,16 +428,13 @@ const _mapStudiesToThumbnails = function(studies) {
         altImageText = 'SEG';
       } else if (displaySet.images && displaySet.images.length) {
         const imageIndex = Math.floor(displaySet.images.length / 2);
-
+        
         imageId = displaySet.images[imageIndex].getImageId();
-        console.log('imageId#$#$', imageId);
-        // this.setState({
-        //   imageId : imageId
-        // })
+        
       } else {
         altImageText = displaySet.modality ? displaySet.modality : 'UN';
       }
-
+      
       return {
         imageId,
         altImageText,
@@ -561,7 +445,7 @@ const _mapStudiesToThumbnails = function(studies) {
         numImageFrames,
       };
     });
-
+    
     return {
       studyInstanceUid,
       thumbnails,
