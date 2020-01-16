@@ -37,6 +37,7 @@
   overflow: hidden;
   transition: var(--sidepanel-transition);
   width: 100%;
+  position: relative;
 }
 
 @media only screen and (max-width: 768px) {

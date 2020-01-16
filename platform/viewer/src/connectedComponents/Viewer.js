@@ -19,7 +19,7 @@ import WhiteLabellingContext from '../context/WhiteLabellingContext.js';
 import UserManagerContext from '../context/UserManagerContext';
 
 //histogram
-// import Histogram from './Histogram';
+import Histogram from './Histogram';
 
 import './Viewer.css';
 /**
