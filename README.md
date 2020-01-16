@@ -21,8 +21,7 @@ HDT2.0
 
 
 ```$xslt
->> cd jhjin-patch
->> cp -rf dist node_modules/cornerstone-tools/dist
+>> cp -rf jhjin-patch/* node_modules/cornerstone-tools/dist/*
 ```
 ```
 >> ls node_modules/cornerstone-tools/dist
