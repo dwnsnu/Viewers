@@ -105,7 +105,7 @@ const definitions = [
   },
   {
     id: 'ArrowAnnotate',
-    label: 'Annotate',
+    label: 'Arrow',
     icon: 'arrow-tag_jlk',
     //
     type: TOOLBAR_BUTTON_TYPES.SET_TOOL_ACTIVE,
@@ -183,7 +183,7 @@ const definitions = [
   },
   {
     id: 'Annotation Tool Kit',
-    label: 'Annotation Tool Kit',
+    label: 'Annotation',
     icon: 'annotation-tool-kit_jlk',
     buttons: [
       {
