@@ -80,7 +80,7 @@ class Header extends Component {
       appConfig.showStudyList !== undefined ? appConfig.showStudyList : true;
     return (
       <>
-        <div className="notification-bar">{t('INVESTIGATIONAL USE ONLY')}</div>
+        <div className="notification-bar">{t('')}</div>
         <div className={`entry-header ${home ? 'header-big' : ''}`}>
           <div className="header-left-box">
             {location && location.studyLink && (
@@ -109,7 +109,7 @@ class Header extends Component {
         
           <div className="header-menu">
             <span className="research-use">
-              {t('INVESTIGATIONAL USE ONLY')}
+              {t('')}
             </span>
             <Dropdown title={t('Options')} list={this.options} align="right" />
           </div>
