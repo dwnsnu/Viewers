@@ -103,15 +103,15 @@ const definitions = [
     type: TOOLBAR_BUTTON_TYPES.COMMAND,
     commandName: 'setRuler',
   },
-  {
-    id: 'ArrowAnnotate',
-    label: 'Arrow',
-    icon: 'arrow-tag_jlk',
-    //
-    type: TOOLBAR_BUTTON_TYPES.SET_TOOL_ACTIVE,
-    commandName: 'setToolActive',
-    commandOptions: { toolName: 'ArrowAnnotate' },
-  },
+  // {
+  //   id: 'ArrowAnnotate',
+  //   label: 'Arrow',
+  //   icon: 'arrow-tag_jlk',
+  //   //
+  //   type: TOOLBAR_BUTTON_TYPES.SET_TOOL_ACTIVE,
+  //   commandName: 'setToolActive',
+  //   commandOptions: { toolName: 'ArrowAnnotate' },
+  // },
   // {
   //   id: 'Cine',
   //   label: 'CINE',
@@ -122,15 +122,15 @@ const definitions = [
   //     behavior: TOOLBAR_BUTTON_BEHAVIORS.CINE,
   //   },
   // },
-  {
-    id: 'TextMarker',
-    label: 'Text',
-    icon: 'text_jlk',
-    //
-    type: TOOLBAR_BUTTON_TYPES.SET_TOOL_ACTIVE,
-    commandName: 'setToolActive',
-    commandOptions: { toolName: 'TextMarker' },
-  },
+  // {
+  //   id: 'TextMarker',
+  //   label: 'Text',
+  //   icon: 'text_jlk',
+  //   //
+  //   type: TOOLBAR_BUTTON_TYPES.SET_TOOL_ACTIVE,
+  //   commandName: 'setToolActive',
+  //   commandOptions: { toolName: 'TextMarker' },
+  // },
   {
     id: 'LRpoint',
     label: 'L,R marker',
