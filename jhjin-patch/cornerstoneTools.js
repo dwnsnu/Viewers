@@ -1,4 +1,4 @@
-/*! jcornerstone-tools-temp - 4.0.7 - 2020-01-16 | (c) 2017 Chris Hafey | https://github.com/enkinary/cornerstoneTools */
+/*! jcornerstone-tools-temp - 4.0.8 - 2020-01-19 | (c) 2017 Chris Hafey | https://github.com/enkinary/cornerstoneTools */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory();
@@ -74,7 +74,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "08d1c30538e6dedf08b5";
+/******/ 	var hotCurrentHash = "342a8fb0fca6fbe91893";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -10837,8 +10837,8 @@ stackRenderers.FusionRenderer = _fusionRenderer_js__WEBPACK_IMPORTED_MODULE_0__[
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-var defaultFontSize = 200,
-    defaultFont = "".concat(defaultFontSize, "px Arial"),
+var defaultFontSize = 10,
+    defaultFont = "".concat(defaultFontSize, "vh Arial"),
     defaultBackgroundColor = 'transparent';
 
 function setFont(font) {
@@ -11331,8 +11331,8 @@ var stackSpecificStateManager = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-var defaultFontSize = 15,
-    defaultFont = "".concat(defaultFontSize, "px Arial"),
+var defaultFontSize = 2,
+    defaultFont = "".concat(defaultFontSize, "vh Arial"),
     defaultBackgroundColor = 'transparent';
 
 function setFont(font) {
@@ -11381,7 +11381,7 @@ var textStyle = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 var defaultColor = 'white',
-    activeColor = 'greenyellow',
+    activeColor = 'red',
     fillColor = 'transparent';
 
 function setFillColor(color) {
@@ -31421,7 +31421,7 @@ function (_BaseAnnotationTool) {
 
 var changeTextCallback = function changeTextCallback(data, eventData, doneChangingTextCallback) {
   // eslint-disable-next-line no-alert
-  doneChangingTextCallback(data, prompt('Change your annotation:'));
+  doneChangingTextCallback(data, 'Change your annotation:');
 };
 /**
  * @callback doneChangingTextCallback
@@ -42452,7 +42452,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ('4.0.7');
+/* harmony default export */ __webpack_exports__["default"] = ('4.0.8');
 
 /***/ })
 
