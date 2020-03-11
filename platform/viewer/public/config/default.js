@@ -7,9 +7,9 @@ window.config = {
     dicomWeb: [
       {
         name: 'dicomWeb_server',
-        wadoUriRoot: 'http://admin:admin@52.231.12.246:5985',
-        qidoRoot: 'http://admin:admin@52.231.12.246:5985',
-        wadoRoot: 'http://admin:admin@52.231.12.246:5985',
+        wadoUriRoot: 'http://52.231.12.246:5985',
+        qidoRoot: 'http://52.231.12.246:5985',
+        wadoRoot: 'http://52.231.12.246:5985',
         imageRendering: 'wadouri',
         thumbnailRendering: 'wadors',
         requestOptions: {
